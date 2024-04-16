@@ -1,5 +1,7 @@
-﻿using System.Configuration;
+﻿using GnomeRides.Utils;
+using System.Configuration;
 using System.Data;
+using System.IO;
 using System.Windows;
 
 namespace GnomeRides
@@ -9,6 +11,16 @@ namespace GnomeRides
     /// </summary>
     public partial class App : Application
     {
+        void App_Startup(object sender, StartupEventArgs e)
+        {
+            var root = Path.GetFullPath($"C:\\Users\\{Environment.UserName}\\source\\repos\\mysql test\\mysql test");
+            DotEnv.load(Path.Combine(root, ".env.local"));
+        }
+
+        protected override void OnExit(ExitEventArgs e)
+        {
+            MySqlAdapter.Connection.Close();
+        }
     }
 
 }
