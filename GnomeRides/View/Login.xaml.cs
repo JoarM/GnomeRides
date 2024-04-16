@@ -23,5 +23,10 @@ namespace GnomeRides.View
         {
             InitializeComponent();
         }
+
+        private void btnLogIn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
