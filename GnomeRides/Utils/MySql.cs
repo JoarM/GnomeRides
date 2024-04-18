@@ -17,7 +17,7 @@ namespace GnomeRides.Utils
                     if (db == null)
                     {
                         db = new MySqlConnection(connStr);
-                        db.Open();
+                        //db.Open();
                     }
                     return db;
                 }

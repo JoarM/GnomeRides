@@ -15,19 +15,13 @@ using System.Windows.Shapes;
 namespace GnomeRides.View
 {
     /// <summary>
-    /// Interaction logic for Window1.xaml
+    /// Interaction logic for mainWindow.xaml
     /// </summary>
-    public partial class Window1 : Window
+    public partial class mainWindow : Window
     {
-        public Window1()
+        public mainWindow()
         {
             InitializeComponent();
-        }
-
-        private void btnLogIn_Click(object sender, RoutedEventArgs e)
-        {
-            mainWindow win = new mainWindow();
-            win.Show();
         }
     }
 }
