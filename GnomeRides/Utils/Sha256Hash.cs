@@ -5,7 +5,7 @@ namespace GnomeRides.Utils
 {
     internal class Sha256Hash
     {
-        public static string createHash(string data)
+        public static string CreateHash(string data)
         {
             using (SHA256 sha256 = SHA256.Create())
             {
@@ -20,9 +20,9 @@ namespace GnomeRides.Utils
             }
         }
 
-        public static bool compareValueToHash(string value, string hash)
+        public static bool CompareValueToHash(string value, string hash)
         {
-            return createHash(value).Equals(hash);
+            return CreateHash(value).Equals(hash);
         }
     }
 }
