@@ -4,7 +4,7 @@ namespace GnomeRides.Utils
 {
     internal class DotEnv
     {
-        public static void load(string path) 
+        public static void Load(string path) 
         { 
             if (!File.Exists(path))
             {
