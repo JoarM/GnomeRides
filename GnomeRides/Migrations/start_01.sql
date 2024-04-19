@@ -16,14 +16,14 @@ CREATE TABLE `vehicle` (
     `fuel`tinyint NOT NULL UNSIGNED,
     `daily_rate` int NOT NULL UNSIGNED,
     `owner_id` varchar(12) NOT NULL,
-    FOREIGN KEY(`owner_id`) REFERENCES `user` (`id`)
+    FOREIGN KEY(`owner_id`) REFERENCES `user` (`id`) ON DELETE CASCADE,
     CONSTRAINT `vehicle_pk` PRIMARY KEY(`reg_nr`)
 );
 
 CREATE TABLE `car` (
     `reg_nr` varchar(6) NOT NULL,
     `co2` smallint NOT NULL,
-    FOREIGN KEY(`reg_nr`) REFERENCES `vehicle` (`reg_nr`)
+    FOREIGN KEY(`reg_nr`) REFERENCES `vehicle` (`reg_nr`) ON DELETE CASCADE
 );
 
 CREATE TABLE `van` (
@@ -35,13 +35,13 @@ CREATE TABLE `van` (
     `inner_height` mediumint NOT NULL UNSIGNED,
     `max_weight` mediumint NOT NULL UNSIGNED,
     `volume` mediumint NOT NULL UNSIGNED,
-    FOREIGN KEY(`reg_nr`) REFERENCES `vehicle` (`reg_nr`)
+    FOREIGN KEY(`reg_nr`) REFERENCES `vehicle` (`reg_nr`) ON DELETE CASCADE
 );
 
 CREATE TABLE `motorcycle` (
     `reg_nr` varchar(6) NOT NULL,
     `cc` smallint NOT NULL UNSIGNED,
-    FOREIGN KEY(`reg_nr`) REFERENCES `vehicle` (`reg_nr`)
+    FOREIGN KEY(`reg_nr`) REFERENCES `vehicle` (`reg_nr`) ON DELETE CASCADE
 );
 
 CREATE TABLE `loan` (
@@ -50,6 +50,6 @@ CREATE TABLE `loan` (
     `price` bigint NOT NULL UNSIGNED,
     `loaner_id` varchar(12) NOT NULL,
     `reg_nr` varchar(6) NOT NULL,
-    FOREIGN KEY(`reg_nr`) REFERENCES `vehicle` (`reg_nr`),
-    FOREIGN KEY(`loaner_id`) REFERENCES `user` (`id`)
+    FOREIGN KEY(`reg_nr`) REFERENCES `vehicle` (`reg_nr`) ON DELETE CASCADE,
+    FOREIGN KEY(`loaner_id`) REFERENCES `user` (`id`) ON DELETE CASCADE
 );

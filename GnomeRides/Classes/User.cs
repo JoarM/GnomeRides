@@ -53,12 +53,11 @@ namespace GnomeRides.Classes
                 }
 
                 _currentUser = new User(reader.GetString(1), reader.GetString(2), reader.GetString(3));
-
-                return null;
             } catch
             {
                 return "An unexpected error occured";
             }
+            return null;
         }
 
         public static string? CreateAccount(string id, string password, string email, string name)
@@ -79,11 +78,12 @@ namespace GnomeRides.Classes
                 cmd.Parameters.AddWithValue("@email", email);
                 cmd.Parameters.AddWithValue("@name", name);
                 cmd.ExecuteNonQuery();
-                return null;
+                _currentUser = new User(id, name, email);
             } catch
             {
                 return "An unexpected error occured";
             }
+            return null;
         }
 
         public static void Logout()
@@ -122,12 +122,12 @@ namespace GnomeRides.Classes
                     cmd.Parameters.AddWithValue("@id", _currentUser._id);
                     cmd.ExecuteNonQuery();
                 }
-                return null;
             }
             catch
             {
                 return "An unexpected error occured";
             }
+            return null;
         }
 
         public static string? DeleteUser(string password)
@@ -160,11 +160,11 @@ namespace GnomeRides.Classes
                     cmd.Parameters.AddWithValue("@id", _currentUser._id);
                     cmd.ExecuteNonQuery();
                 }
-                return null;
             } catch
             {
                 return "Failed to delete account";
             }
+            return null;
         }
     }
 }
