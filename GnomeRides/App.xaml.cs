@@ -14,7 +14,7 @@ namespace GnomeRides
         void App_Startup(object sender, StartupEventArgs e)
         {
             var root = Path.GetFullPath($"C:\\Users\\{Environment.UserName}\\source\\repos\\mysql test\\mysql test");
-            DotEnv.load(Path.Combine(root, ".env.local"));
+            DotEnv.Load(Path.Combine(root, ".env.local"));
         }
 
         protected override void OnExit(ExitEventArgs e)
