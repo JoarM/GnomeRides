@@ -35,25 +35,26 @@ namespace GnomeRides.Classes
             {
                 return "Already logged in";
             }
+
             try
             {
-                MySqlCommand cmd = MySqlAdapter.Connection.CreateCommand();
+                using MySqlCommand cmd = MySqlAdapter.Connection.CreateCommand();
                 cmd.CommandText = "SELECT hashed_password, id, name, email FROM user WHERE id = @id;";
                 cmd.Parameters.AddWithValue("@id", id);
-                MySqlDataReader reader = cmd.ExecuteReader();
-                if (reader.Read()) 
+                using MySqlDataReader reader = cmd.ExecuteReader();
+                if (!reader.Read())
                 {
-                    if (Sha256Hash.CompareValueToHash(password, reader.GetString(0)))
-                    {
-                        _currentUser = new User(reader.GetString(1), reader.GetString(2), reader.GetString(3));
-                        return null;
-                    }
-                } else
+                    return "Incorrect password";
+                }
+
+                if (!Sha256Hash.CompareValueToHash(password, reader.GetString(0)))
                 {
                     return "Incorrect id or password";
                 }
-                
-                return "Incorrect password";
+
+                _currentUser = new User(reader.GetString(1), reader.GetString(2), reader.GetString(3));
+
+                return null;
             } catch
             {
                 return "An unexpected error occured";
@@ -71,7 +72,7 @@ namespace GnomeRides.Classes
 
             try
             {
-                MySqlCommand cmd = MySqlAdapter.Connection.CreateCommand();
+                using MySqlCommand cmd = MySqlAdapter.Connection.CreateCommand();
                 cmd.CommandText = "INSERT INTO user (id, password, email, name) VALUES (@id, @password, @email, @name);";
                 cmd.Parameters.AddWithValue("@id", id);
                 cmd.Parameters.AddWithValue ("@password", Sha256Hash.CreateHash(password));
@@ -88,6 +89,82 @@ namespace GnomeRides.Classes
         public static void Logout()
         {
             _currentUser = null;
+        }
+
+        public static string? ChangePassword(string oldPassword, string newPassword)
+        {
+            if (_currentUser == null)
+            {
+                return "Unauthorized";
+            }
+
+            try
+            {
+                using (MySqlCommand cmd = MySqlAdapter.Connection.CreateCommand())
+                {
+                    cmd.CommandText = "SELECT hashed_password FROM user WHERE id = @id;";
+                    cmd.Parameters.AddWithValue("@id", _currentUser._id);
+                    using MySqlDataReader reader = cmd.ExecuteReader();
+                    if (!reader.Read())
+                    {
+                        return "Incorrect id or password";
+                    }
+                    if (!Sha256Hash.CompareValueToHash(oldPassword, reader.GetString(0)))
+                    {
+                        return "Incorrect id or password";
+                    }
+                }
+
+                using (MySqlCommand cmd = MySqlAdapter.Connection.CreateCommand())
+                {
+                    cmd.CommandText = "UPDATE user SET hashed_password = @hashed_password WHERE id = @id;";
+                    cmd.Parameters.AddWithValue("@hashed_password", Sha256Hash.CreateHash(newPassword));
+                    cmd.Parameters.AddWithValue("@id", _currentUser._id);
+                    cmd.ExecuteNonQuery();
+                }
+                return null;
+            }
+            catch
+            {
+                return "An unexpected error occured";
+            }
+        }
+
+        public static string? DeleteUser(string password)
+        {
+            if (_currentUser == null)
+            {
+                return "Unauthorized";
+            }
+
+            try
+            {
+                using (MySqlCommand cmd = MySqlAdapter.Connection.CreateCommand())
+                {
+                    cmd.CommandText = "SELECT hashed_password FROM user WHERE id = @id;";
+                    cmd.Parameters.AddWithValue("@id", _currentUser._id);
+                    using MySqlDataReader reader = cmd.ExecuteReader();
+                    if (!reader.Read())
+                    {
+                        return "Incorrect id or password";
+                    }
+                    if (!Sha256Hash.CompareValueToHash(password, reader.GetString(0)))
+                    {
+                        return "Incorrect id or password";
+                    }
+                }
+
+                using (MySqlCommand cmd = MySqlAdapter.Connection.CreateCommand())
+                {
+                    cmd.CommandText = "DELETE user WHERE id = @id;";
+                    cmd.Parameters.AddWithValue("@id", _currentUser._id);
+                    cmd.ExecuteNonQuery();
+                }
+                return null;
+            } catch
+            {
+                return "Failed to delete account";
+            }
         }
     }
 }
