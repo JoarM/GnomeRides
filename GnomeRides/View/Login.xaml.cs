@@ -28,6 +28,7 @@ namespace GnomeRides.View
         {
             mainWindow win = new mainWindow();
             win.Show();
+            Close();
         }
     }
 }

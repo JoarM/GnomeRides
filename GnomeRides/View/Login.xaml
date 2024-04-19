@@ -20,10 +20,10 @@
 
         <Label Content="Gnome Rides" FontSize="30" Grid.Column="1" Grid.Row="0" HorizontalContentAlignment="Center"/>
 
-        <Label Grid.Column="1" Grid.Row="1" Content="namn" HorizontalContentAlignment="center" FontSize="40" Height="70" Margin="0,10,0,220"/>
-        <TextBox FontSize="20" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" Height="40" Margin="0,80,0,180" RenderTransformOrigin="0.567,-0.375" Width="138"/>
-        <Label Grid.Column="1" Grid.Row="1" Content="Lösenord" HorizontalContentAlignment="center" FontSize="40" Height="70" Margin="0,125,0,105"/>
-        <TextBox FontSize="20" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" Height="40" Margin="0,200,0,60" RenderTransformOrigin="0.567,-0.375" Width="138" />
+        <Label Grid.Column="1" Grid.Row="1" Content="Personnummer" HorizontalContentAlignment="center" FontSize="30" Height="70" Margin="0,10,0,220"/>
+        <TextBox FontSize="20" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" Height="40" Margin="0,80,0,180" RenderTransformOrigin="0.567,-0.375" Width="138" Name="TbxPeronsId"/>
+        <Label Grid.Column="1" Grid.Row="1" Content="Lösenord" HorizontalContentAlignment="center" FontSize="30" Height="70" Margin="0,125,0,105"/>
+        <PasswordBox FontSize="20" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" Height="40" Margin="0,200,0,60" RenderTransformOrigin="0.567,-0.375" Width="138" />
 
         <Button Content="Åhhh Tryck mig" Grid.Column="1" Grid.Row="2" FontSize="33" Name="btnLogIn" Click="btnLogIn_Click"/>
     </Grid>
