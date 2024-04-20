@@ -10,7 +10,7 @@ namespace GnomeRides.Classes
         private readonly string _email;
         private static User? _currentUser = null;
 
-        private User(string id, string name, string email)
+        public User(string id, string name, string email)
         {
             _id = id;
             _name = name;

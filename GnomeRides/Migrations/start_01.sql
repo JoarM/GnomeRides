@@ -48,7 +48,7 @@ CREATE TABLE `loan` (
     `start_date` DATE NOT NULL,
     `end_date` DATE NOT NULL,
     `price` bigint NOT NULL UNSIGNED,
-    `loaner_id` varchar(12) NOT NULL,
+    `loan_owner_id` varchar(12) NOT NULL,
     `reg_nr` varchar(6) NOT NULL,
     FOREIGN KEY(`reg_nr`) REFERENCES `vehicle` (`reg_nr`) ON DELETE CASCADE,
     FOREIGN KEY(`loaner_id`) REFERENCES `user` (`id`) ON DELETE CASCADE

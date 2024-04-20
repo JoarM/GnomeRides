@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GnomeRides.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,11 +16,11 @@ using System.Windows.Shapes;
 namespace GnomeRides.View
 {
     /// <summary>
-    /// Interaction logic for Window1.xaml
+    /// Interaction logic for Login.xaml
     /// </summary>
-    public partial class Window1 : Window
+    public partial class Login : Window
     {
-        public Window1()
+        public Login()
         {
             InitializeComponent();
         }
