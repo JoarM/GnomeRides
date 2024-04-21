@@ -55,6 +55,46 @@ namespace GnomeRides.Classes
             _mileage = mileage;
             return null;
         }
+
+        protected virtual int? LoanVehicle(DateOnly StartDate, DateOnly EndDate)
+        {
+            if (User.CurrentUser ==  null)
+            {
+                return 1;
+            }
+
+            try
+            {
+                using (MySqlCommand cmd = MySqlAdapter.Connection.CreateCommand())
+                {
+                    cmd.CommandText = "GET reg_nr FROM vehicle WHERE reg_nr = @reg_nr AND @start_date BETWEEN start_date AND end_date OR @end_date BETWEEN start_date AND end_date;";
+                    cmd.Parameters.AddWithValue("@reg_nr", RegNr);
+                    cmd.Parameters.AddWithValue("@start_date", StartDate);
+                    cmd.Parameters.AddWithValue("@end_date", EndDate);
+                    using MySqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        return 2;
+                    }
+                }
+
+                using (MySqlCommand cmd = MySqlAdapter.Connection.CreateCommand())
+                {
+                    TimeSpan rentDays = EndDate.ToDateTime(new TimeOnly(0,0,0,0,0)) - StartDate.ToDateTime(new TimeOnly(0, 0, 0, 0, 0));
+                    cmd.CommandText = "INSERT INTO loan (start_date, end_date, price, loan_owner_id, reg_nr) VALUES (@start_date, @end_date, @price, @loan_owner_id, @reg_nr);";
+                    cmd.Parameters.AddWithValue("@start_date", StartDate);
+                    cmd.Parameters.AddWithValue("@end_date", EndDate);
+                    cmd.Parameters.AddWithValue("@price", rentDays.TotalDays * DailyRate);
+                    cmd.Parameters.AddWithValue("@loan_owner_id", User.CurrentUser.Id);
+                    cmd.Parameters.AddWithValue("@reg_nr", RegNr);
+                    cmd.ExecuteNonQuery();
+                }
+            } catch 
+            {
+                return -1;
+            }
+            return null;
+        }
     }
 
     class Car : Vehicle
@@ -86,6 +126,18 @@ namespace GnomeRides.Classes
         }
 
         public int Co2 { get { return _co2; } }
+
+        public string? LoanCar(DateOnly StartDate, DateOnly EndDate)
+        {
+            int? error = LoanVehicle(StartDate, EndDate);
+            return error switch
+            {
+                null => null,
+                1 => "Vänligen logga in för att hyra en bil.",
+                2 => "Bilen är redan bokad under denna period.",
+                _ => "Ett oväntat fel uppstod",
+            };
+        }
     }
 
     class MotorCycle : Vehicle
@@ -117,6 +169,18 @@ namespace GnomeRides.Classes
         }
 
         public int CC { get { return _cc; } }
+
+        public string? LoanMotorCycle(DateOnly StartDate, DateOnly EndDate)
+        {
+            int? error = LoanVehicle(StartDate, EndDate);
+            return error switch
+            {
+                null => null,
+                1 => "Vänligen logga in för att hyra en motorcyckel.",
+                2 => "Motorcycklen är redan bokad under denna period.",
+                _ => "Ett oväntat fel uppstod",
+            };
+        }
     }
 
     class Van : Vehicle
@@ -176,5 +240,17 @@ namespace GnomeRides.Classes
         public int InnerLength { get { return _inner_length; } }
         public int MaxWeight { get { return _max_weight; } }
         public int Volume { get { return _volume; } }
+
+        public string? LoanVan(DateOnly StartDate, DateOnly EndDate)
+        {
+            int? error = LoanVehicle(StartDate, EndDate);
+            return error switch
+            {
+                null => null,
+                1 => "Vänligen logga in för att hyra en skåpbil.",
+                2 => "Skåpbilen är redan bokad under denna period.",
+                _ => "Ett oväntat fel uppstod",
+            };
+        }
     }
 }
