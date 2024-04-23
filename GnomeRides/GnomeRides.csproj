@@ -16,6 +16,7 @@
   <ItemGroup>
     <PackageReference Include="EntityFramework" Version="6.4.4" />
     <PackageReference Include="MySql.Data" Version="8.3.0" />
+    <PackageReference Include="WPF-UI" Version="3.0.4" />
   </ItemGroup>
 
 </Project>

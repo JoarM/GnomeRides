@@ -1,30 +1,21 @@
-﻿<Window x:Class="GnomeRides.View.Login"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GnomeRides.View"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" x:Class="GnomeRides.View.Login"
         mc:Ignorable="d"
-        Title="Window1" Height="900" Width="1200">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition/>
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="150"/>
-            <RowDefinition Height="300"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-
-        <Label Content="Gnome Rides" FontSize="30" Grid.Column="1" Grid.Row="0" HorizontalContentAlignment="Center"/>
-
-        <Label Grid.Column="1" Grid.Row="1" Content="Personnummer" HorizontalContentAlignment="center" FontSize="30" Height="70" Margin="0,10,0,220"/>
-        <TextBox FontSize="20" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" Height="40" Margin="0,80,0,180" RenderTransformOrigin="0.567,-0.375" Width="138" Name="TbxPeronsId"/>
-        <Label Grid.Column="1" Grid.Row="1" Content="Lösenord" HorizontalContentAlignment="center" FontSize="30" Height="70" Margin="0,125,0,105"/>
-        <PasswordBox FontSize="20" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" Height="40" Margin="0,200,0,60" RenderTransformOrigin="0.567,-0.375" Width="138" />
-
-        <Button Content="Åhhh Tryck mig" Grid.Column="1" Grid.Row="2" FontSize="33" Name="btnLogIn" Click="btnLogIn_Click"/>
+        Title="Login" Height="760" Width="450"
+        >
+    <Grid Margin="24" VerticalAlignment="Center">
+        <StackPanel>
+            <TextBlock FontSize="24" FontWeight="Bold">Login</TextBlock>
+            <Label Margin="0,24,0,0" FontSize="14" FontWeight="Medium">Personnummer</Label>
+            <ui:TextBox Margin="0,8,0,0" />
+            <Label Margin="0,16,0,0" FontSize="14" FontWeight="Medium">Lösenord</Label>
+            <ui:PasswordBox Margin="0,8,0,0" />
+            <ui:Button Margin="0,20,0,0" HorizontalAlignment="Stretch">Login</ui:Button>
+        </StackPanel>
     </Grid>
 </Window>
