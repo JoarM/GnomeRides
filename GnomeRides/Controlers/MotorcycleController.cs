@@ -1,19 +1,18 @@
 ﻿using GnomeRides.Classes;
 using GnomeRides.Utils;
 using MySql.Data.MySqlClient;
-using System.Diagnostics;
 
 namespace GnomeRides.Controlers
 {
-    internal class CarController
+    internal class MotorcycleController
     {
         /// <summary>
-        /// Gives you a list of all cars
+        /// Gives you a list of all motorcycles
         /// </summary>
-        /// <returns>A tuple containg a list of cars and an error message or null</returns>
-        public static (List<Car>, string?) GetCars() 
-        { 
-            List<Car> CarList = new();
+        /// <returns>A tuple containg a list of motorcycles and an error message or null</returns>
+        public static (List<MotorCycle>, string?) GetMotorcycles()
+        {
+            List<MotorCycle> MotorcycleList = new();
             try
             {
                 using MySqlCommand cmd = MySqlAdapter.Connection.CreateCommand();
@@ -23,44 +22,45 @@ namespace GnomeRides.Controlers
                     "vehicle.mileage, vehicle.wheels, " +
                     "vehicle.model, " +
                     "vehicle.fuel_type, " +
-                    "vehicle.daily_rate," +
-                    " vehicle.owner_id, " +
-                    "car.co2 " +
+                    "vehicle.daily_rate, " +
+                    "vehicle.owner_id, " +
+                    "motorcycle.cc " +
                     "FROM vehicle " +
                     "INNER JOIN car " +
-                    "ON vehicle.reg_nr = car.reg_nr;";
+                    "ON vehicle.reg_nr = motorcycle.reg_nr;";
                 using MySqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    Car car = new(
-                        reader.GetString(0), 
+                    MotorCycle motorcycle = new(
+                        reader.GetString(0),
                         reader.GetUInt16(1),
-                        Constans.VehicleManufacturers.Find(kvp => kvp.Key == reader.GetUInt16(2)).Value, 
-                        reader.GetUInt32(3), 
-                        reader.GetUInt16(4), 
+                        Constans.VehicleManufacturers.Find(kvp => kvp.Key == reader.GetUInt16(2)).Value,
+                        reader.GetUInt32(3),
+                        reader.GetUInt16(4),
                         reader.GetString(5),
-                        Constans.FuelTypes.Find(kvp => kvp.Key == reader.GetUInt16(6)).Value, 
+                        Constans.FuelTypes.Find(kvp => kvp.Key == reader.GetUInt16(6)).Value,
                         reader.GetUInt32(7),
                         reader.GetString(8),
                         reader.GetUInt16(9)
                     );
-                    CarList.Add(car);
+                    MotorcycleList.Add(motorcycle);
                 }
-            } catch
-            {
-                return (CarList, "Ett oväntat fel uppstod");
             }
-            return (CarList, null);
+            catch
+            {
+                return (MotorcycleList, "Ett oväntat fel uppstod");
+            }
+            return (MotorcycleList, null);
         }
 
         /// <summary>
-        /// Returns a given car by the registratinon nummber
+        /// Returns a given motorcycle by the registratinon nummber
         /// </summary>
         /// <param name="regNr"></param>
-        /// <returns>A tuple containing a car or null and an error message or null</returns>
-        public static (Car?, string?) GetCarByRegNr(string regNr)
+        /// <returns>A tuple containing a motorcycle or null and an error message or null</returns>
+        public static (MotorCycle?, string?) GetMotorcycleByRegNr(string regNr)
         {
-            Car? car = null;
+            MotorCycle? motorcycle = null;
             try
             {
                 using MySqlCommand cmd = MySqlAdapter.Connection.CreateCommand();
@@ -70,19 +70,19 @@ namespace GnomeRides.Controlers
                     "vehicle.mileage, vehicle.wheels, " +
                     "vehicle.model, " +
                     "vehicle.fuel_type, " +
-                    "vehicle.daily_rate," +
-                    " vehicle.owner_id, " +
-                    "car.co2 " +
+                    "vehicle.daily_rate, " +
+                    "vehicle.owner_id, " +
+                    "motorcycle.cc " +
                     "FROM vehicle WHERE vehicle.reg_nr = @reg_nr" +
-                    "INNER JOIN car " +
-                    "ON vehicle.reg_nr = car.reg_nr;";
+                    "INNER JOIN motorcycle " +
+                    "ON vehicle.reg_nr = motorcycle.reg_nr;";
                 cmd.Parameters.AddWithValue("@reg_nr", regNr);
                 using MySqlDataReader reader = cmd.ExecuteReader();
                 if (!reader.Read())
                 {
-                    return (car, "Ett oväntat fel uppstod");
+                    return (motorcycle, "Ett oväntat fel uppstod");
                 }
-                car = new(
+                motorcycle = new(
                     reader.GetString(0),
                     reader.GetUInt16(1),
                     Constans.VehicleManufacturers.Find(kvp => kvp.Key == reader.GetUInt16(2)).Value,
@@ -97,13 +97,13 @@ namespace GnomeRides.Controlers
             }
             catch
             {
-                return (car, "Ett oväntat fel uppstod");
+                return (motorcycle, "Ett oväntat fel uppstod");
             }
-            return (car, null);
+            return (motorcycle, null);
         }
 
         /// <summary>
-        /// Adds a car to the database
+        /// Adds a motorcycle to the database
         /// </summary>
         /// <param name="regNr"></param>
         /// <param name="seats"></param>
@@ -113,9 +113,9 @@ namespace GnomeRides.Controlers
         /// <param name="model"></param>
         /// <param name="fuelType"></param>
         /// <param name="dailyRate"></param>
-        /// <param name="co2"></param>
+        /// <param name="cc"></param>
         /// <returns>An error message on error and null on success</returns>
-        public static string? AddCar(string regNr, uint seats, uint manufacturer, uint mileage, uint wheels, string model, uint fuelType, uint dailyRate,  uint co2)
+        public static string? AddMotorcycle(string regNr, uint seats, uint manufacturer, uint mileage, uint wheels, string model, uint fuelType, uint dailyRate, uint cc)
         {
             if (User.CurrentUser == null)
             {
@@ -127,7 +127,7 @@ namespace GnomeRides.Controlers
                 using MySqlCommand cmd = MySqlAdapter.Connection.CreateCommand();
                 cmd.CommandText = "INSERT INTO vehicle (reg_nr, seats, manufacturer, mileage, wheels, model, fuel_type, daily_rate, owner_id) " +
                     "VALUES (@reg_nr, @seats, @manufacturer, @mileage, @wheels, @model, @fuel_type, @daily_rate, @owner_id);" +
-                    "INSERT INTO car (reg_nr, co2) VALUES (@reg_nr, @co2);";
+                    "INSERT INTO motorcycle (reg_nr, cc) VALUES (@reg_nr, @cc);";
                 cmd.Parameters.AddWithValue("@reg_nr", regNr);
                 cmd.Parameters.AddWithValue("@seats", seats);
                 cmd.Parameters.AddWithValue("@manufacturer", manufacturer);
@@ -137,9 +137,10 @@ namespace GnomeRides.Controlers
                 cmd.Parameters.AddWithValue("@fuel_type", fuelType);
                 cmd.Parameters.AddWithValue("@daily_rate", dailyRate);
                 cmd.Parameters.AddWithValue("@owner_id", User.CurrentUser.Id);
-                cmd.Parameters.AddWithValue("@co2", co2);
+                cmd.Parameters.AddWithValue("@cc", cc);
                 cmd.ExecuteNonQuery();
-            } catch
+            }
+            catch
             {
                 return "Ett oväntat fel uppstod";
             }
