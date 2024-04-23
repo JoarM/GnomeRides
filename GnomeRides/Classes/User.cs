@@ -28,7 +28,12 @@ namespace GnomeRides.Classes
         public string Id { get { return _id; } }
         public string Name { get { return _name;  } }
         public string Email { get { return _email; } }
-
+        /// <summary>
+        /// Performs a user login and if succesful sets currentUser
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="password"></param>
+        /// <returns>An error message on failure and null on succcess</returns>
         public static string? Login(string id, string password)
         {
             if (_currentUser != null)
@@ -59,7 +64,14 @@ namespace GnomeRides.Classes
             }
             return null;
         }
-
+        /// <summary>
+        /// Creates an account with the given credentials and sets currentUser to the created user on success
+        /// </summary>
+        /// <param name="id">The persons social security number</param>
+        /// <param name="password"></param>
+        /// <param name="email"></param>
+        /// <param name="name"></param>
+        /// <returns>An error message on error and null on success</returns>
         public static string? CreateAccount(string id, string password, string email, string name)
         {
             if (_currentUser != null)
@@ -72,25 +84,36 @@ namespace GnomeRides.Classes
             try
             {
                 using MySqlCommand cmd = MySqlAdapter.Connection.CreateCommand();
-                cmd.CommandText = "INSERT INTO user (id, password, email, name) VALUES (@id, @password, @email, @name);";
+                cmd.CommandText = "INSERT INTO user (id, hashed_password, email, name) VALUES (@id, @hashed_password, @email, @name);";
                 cmd.Parameters.AddWithValue("@id", id);
-                cmd.Parameters.AddWithValue ("@password", Sha256Hash.CreateHash(password));
+                cmd.Parameters.AddWithValue ("@hashed_password", Sha256Hash.CreateHash(password));
                 cmd.Parameters.AddWithValue("@email", email);
                 cmd.Parameters.AddWithValue("@name", name);
                 cmd.ExecuteNonQuery();
                 _currentUser = new User(id, name, email);
-            } catch
+            } catch (Exception ex)
             {
+                if (ex.HResult == -2147467259)
+                {
+                    return "Ett konot med detta personnummer finns redan.";
+                }
                 return "An unexpected error occured";
             }
             return null;
         }
-
+        /// <summary>
+        /// Logout the current user
+        /// </summary>
         public static void Logout()
         {
             _currentUser = null;
         }
-
+        /// <summary>
+        /// Change the current users password
+        /// </summary>
+        /// <param name="oldPassword"></param>
+        /// <param name="newPassword"></param>
+        /// <returns>An error message on error and null on success</returns>
         public static string? ChangePassword(string oldPassword, string newPassword)
         {
             if (_currentUser == null)
@@ -129,7 +152,11 @@ namespace GnomeRides.Classes
             }
             return null;
         }
-
+        /// <summary>
+        /// Delete the current user
+        /// </summary>
+        /// <param name="password"></param>
+        /// <returns>An error message on error and null on success</returns>
         public static string? DeleteUser(string password)
         {
             if (_currentUser == null)
@@ -164,6 +191,7 @@ namespace GnomeRides.Classes
             {
                 return "Failed to delete account";
             }
+            _currentUser = null;
             return null;
         }
     }

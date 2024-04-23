@@ -6,7 +6,5 @@
         xmlns:local="clr-namespace:GnomeRides.View"
         mc:Ignorable="d"
         Title="mainWindow" Height="1000" Width="1500">
-    <Grid>
-        
-    </Grid>
+    <Grid/>
 </Window>

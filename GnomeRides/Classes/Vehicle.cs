@@ -6,24 +6,27 @@ namespace GnomeRides.Classes
     abstract class Vehicle
     {
         protected string _reg_nr;
-        protected int _seats;
+        protected uint _seats;
         protected string _manufacturer;
-        protected int _mileage;
-        protected int _wheels;
+        protected uint _mileage;
+        protected uint _wheels;
         protected string _model;
         protected string _fuel_type;
-        protected int _daily_rate;
+        protected uint _daily_rate;
         protected string _owner_id;
 
         public string RegNr { get { return _reg_nr; } }
-        public int Seats { get { return _seats; } }
+        public uint Seats { get { return _seats; } }
         public string Manufacturer { get { return _manufacturer; } }
-        public int Mileage { get { return _mileage; } }
-        public int Wheels {  get { return _wheels; } }
+        public uint Mileage { get { return _mileage; } }
+        public uint Wheels {  get { return _wheels; } }
         public string Model { get { return _model; } }
         public string FuelType { get { return _fuel_type; } }
-        public int DailyRate { get { return _daily_rate; } }
-
+        public uint DailyRate { get { return _daily_rate; } }
+        /// <summary>
+        /// Deletes vehicle
+        /// </summary>
+        /// <returns>An error message on error and null on success</returns>
         public string? DeleteVehicle()
         {
             try
@@ -38,8 +41,12 @@ namespace GnomeRides.Classes
             }
             return null;
         }
-
-        public string? UpdateMileage(int mileage)
+        /// <summary>
+        /// Updates the vehicles mileage
+        /// </summary>
+        /// <param name="mileage"></param>
+        /// <returns>An error message on error and null on success</returns>
+        public string? UpdateMileage(uint mileage)
         {
             try
             {
@@ -55,7 +62,12 @@ namespace GnomeRides.Classes
             _mileage = mileage;
             return null;
         }
-
+        /// <summary>
+        /// Loan the vehicle to the currentUser
+        /// </summary>
+        /// <param name="StartDate"></param>
+        /// <param name="EndDate"></param>
+        /// <returns>An error code on error and null on success</returns>
         protected virtual int? LoanVehicle(DateOnly StartDate, DateOnly EndDate)
         {
             if (User.CurrentUser ==  null)
@@ -67,7 +79,9 @@ namespace GnomeRides.Classes
             {
                 using (MySqlCommand cmd = MySqlAdapter.Connection.CreateCommand())
                 {
-                    cmd.CommandText = "GET reg_nr FROM vehicle WHERE reg_nr = @reg_nr AND @start_date BETWEEN start_date AND end_date OR @end_date BETWEEN start_date AND end_date;";
+                    cmd.CommandText = "GET reg_nr FROM vehicle WHERE reg_nr = @reg_nr " +
+                        "AND @start_date BETWEEN start_date AND end_date " +
+                        "OR @end_date BETWEEN start_date AND end_date;";
                     cmd.Parameters.AddWithValue("@reg_nr", RegNr);
                     cmd.Parameters.AddWithValue("@start_date", StartDate);
                     cmd.Parameters.AddWithValue("@end_date", EndDate);
@@ -81,7 +95,8 @@ namespace GnomeRides.Classes
                 using (MySqlCommand cmd = MySqlAdapter.Connection.CreateCommand())
                 {
                     TimeSpan rentDays = EndDate.ToDateTime(new TimeOnly(0,0,0,0,0)) - StartDate.ToDateTime(new TimeOnly(0, 0, 0, 0, 0));
-                    cmd.CommandText = "INSERT INTO loan (start_date, end_date, price, loan_owner_id, reg_nr) VALUES (@start_date, @end_date, @price, @loan_owner_id, @reg_nr);";
+                    cmd.CommandText = "INSERT INTO loan (start_date, end_date, price, loan_owner_id, reg_nr) " +
+                        "VALUES (@start_date, @end_date, @price, @loan_owner_id, @reg_nr);";
                     cmd.Parameters.AddWithValue("@start_date", StartDate);
                     cmd.Parameters.AddWithValue("@end_date", EndDate);
                     cmd.Parameters.AddWithValue("@price", rentDays.TotalDays * DailyRate);
@@ -99,18 +114,18 @@ namespace GnomeRides.Classes
 
     class Car : Vehicle
     {
-        private readonly int _co2;
+        private readonly uint _co2;
 
         public Car(string reg_nr,
-            int seats,
+            uint seats,
             string manufacturer,
-            int mileage,
-            int wheels,
+            uint mileage,
+            uint wheels,
             string model,
             string fuel_type,
-            int daily_rate,
+            uint daily_rate,
             string owner_id,
-            int co2
+            uint co2
         )
         {
             _reg_nr = reg_nr;
@@ -125,8 +140,13 @@ namespace GnomeRides.Classes
             _co2 = co2;
         }
 
-        public int Co2 { get { return _co2; } }
-
+        public uint Co2 { get { return _co2; } }
+        /// <summary>
+        /// Loan the car to the currentUser
+        /// </summary>
+        /// <param name="StartDate"></param>
+        /// <param name="EndDate"></param>
+        /// <returns>An error message on error and null on success</returns>
         public string? LoanCar(DateOnly StartDate, DateOnly EndDate)
         {
             int? error = LoanVehicle(StartDate, EndDate);
@@ -142,18 +162,18 @@ namespace GnomeRides.Classes
 
     class MotorCycle : Vehicle
     {
-        private readonly int _cc;
+        private readonly uint _cc;
 
         public MotorCycle(string reg_nr,
-            int seats,
+            uint seats,
             string manufacturer,
-            int mileage,
-            int wheels,
+            uint mileage,
+            uint wheels,
             string model,
             string fuel_type,
-            int daily_rate,
+            uint daily_rate,
             string owner_id, 
-            int cc
+            uint cc
         )
         {
             _reg_nr = reg_nr;
@@ -168,8 +188,13 @@ namespace GnomeRides.Classes
             _cc = cc;
         }
 
-        public int CC { get { return _cc; } }
-
+        public uint CC { get { return _cc; } }
+        /// <summary>
+        /// Loan the motorcycle to the currentUser
+        /// </summary>
+        /// <param name="StartDate"></param>
+        /// <param name="EndDate"></param>
+        /// <returns>An error message on error and null on success</returns>
         public string? LoanMotorCycle(DateOnly StartDate, DateOnly EndDate)
         {
             int? error = LoanVehicle(StartDate, EndDate);
@@ -185,32 +210,32 @@ namespace GnomeRides.Classes
 
     class Van : Vehicle
     {
-        private readonly int _outer_width;
-        private readonly int _outer_height;
-        private readonly int _outer_length;
-        private readonly int _inner_width;
-        private readonly int _inner_height;
-        private readonly int _inner_length;
-        private readonly int _max_weight;
-        private readonly int _volume;
+        private readonly uint _outer_width;
+        private readonly uint _outer_height;
+        private readonly uint _outer_length;
+        private readonly uint _inner_width;
+        private readonly uint _inner_height;
+        private readonly uint _inner_length;
+        private readonly uint _max_weight;
+        private readonly uint _volume;
 
         public Van(string reg_nr,
-            int seats,
+            uint seats,
             string manufacturer,
-            int mileage,
-            int wheels,
+            uint mileage,
+            uint wheels,
             string model,
             string fuel_type,
-            int daily_rate,
+            uint daily_rate,
             string owner_id, 
-            int outer_width, 
-            int outer_height, 
-            int outer_length, 
-            int inner_width,
-            int inner_height, 
-            int inner_length, 
-            int max_weight, 
-            int volume
+            uint outer_width, 
+            uint outer_height, 
+            uint outer_length, 
+            uint inner_width,
+            uint inner_height, 
+            uint inner_length, 
+            uint max_weight, 
+            uint volume
         )
         {
             _reg_nr = reg_nr;
@@ -232,15 +257,20 @@ namespace GnomeRides.Classes
             _volume = volume;
         }
 
-        public int OuterWidth { get { return _outer_width; } }
-        public int OuterHeight { get { return _outer_height; } }
-        public int OuterLength { get { return _outer_length; } }
-        public int InnerWidth { get { return _inner_width; } }
-        public int InnerHeight { get { return _inner_height; } }
-        public int InnerLength { get { return _inner_length; } }
-        public int MaxWeight { get { return _max_weight; } }
-        public int Volume { get { return _volume; } }
-
+        public uint OuterWidth { get { return _outer_width; } }
+        public uint OuterHeight { get { return _outer_height; } }
+        public uint OuterLength { get { return _outer_length; } }
+        public uint InnerWidth { get { return _inner_width; } }
+        public uint InnerHeight { get { return _inner_height; } }
+        public uint InnerLength { get { return _inner_length; } }
+        public uint MaxWeight { get { return _max_weight; } }
+        public uint Volume { get { return _volume; } }
+        /// <summary>
+        /// Loan the van to the currentUser
+        /// </summary>
+        /// <param name="StartDate"></param>
+        /// <param name="EndDate"></param>
+        /// <returns>An error message on error and null on success</returns>
         public string? LoanVan(DateOnly StartDate, DateOnly EndDate)
         {
             int? error = LoanVehicle(StartDate, EndDate);

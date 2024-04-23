@@ -25,7 +25,10 @@ namespace GnomeRides.Classes
         public string LoanOwnerId { get {  return _loan_owner_id; } }
         public string RegNr { get { return _reg_nr; } }
         public int Price { get { return _price; } }
-
+        /// <summary>
+        /// Get the user loaning a vehicle
+        /// </summary>
+        /// <returns>A tuple containing a user or a string</returns>
         public (User?, string?) GetLoanOwner()
         {
             try

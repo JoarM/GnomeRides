@@ -6,7 +6,11 @@ namespace GnomeRides.Utils
     {
         private static MySqlConnection? db = null;
         private static readonly object db_lock = new object();
-        private static readonly string connStr = $"server={Environment.GetEnvironmentVariable("DB_SERVER")};user={Environment.GetEnvironmentVariable("DB_USER")};database={Environment.GetEnvironmentVariable("DB_DATABASE")};password={Environment.GetEnvironmentVariable("DB_PASSWORD")};";
+        private static readonly string connStr = 
+            $"server={Environment.GetEnvironmentVariable("DB_HOST")};" +
+            $"user={Environment.GetEnvironmentVariable("DB_USER")};" +
+            $"database={Environment.GetEnvironmentVariable("DB_NAME")};" +
+            $"password={Environment.GetEnvironmentVariable("DB_PASSWORD")};";
 
         public static MySqlConnection Connection
         {
@@ -17,7 +21,7 @@ namespace GnomeRides.Utils
                     if (db == null)
                     {
                         db = new MySqlConnection(connStr);
-                        //db.Open();
+                        db.Open();
                     }
                     return db;
                 }

@@ -5,6 +5,11 @@ namespace GnomeRides.Utils
 {
     internal class Sha256Hash
     {
+        /// <summary>
+        /// Create a Sha256 hash
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns>A the input string as a Sha256 hash string</returns>
         public static string CreateHash(string data)
         {
             using (SHA256 sha256 = SHA256.Create())
@@ -20,6 +25,12 @@ namespace GnomeRides.Utils
             }
         }
 
+        /// <summary>
+        /// Compare a string to a hash value
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="hash"></param>
+        /// <returns>True if the value is the hashed value</returns>
         public static bool CompareValueToHash(string value, string hash)
         {
             return CreateHash(value).Equals(hash);
