@@ -6,5 +6,19 @@
         xmlns:local="clr-namespace:GnomeRides.View"
         mc:Ignorable="d"
         Title="mainWindow" Height="1000" Width="1500">
-    <Grid/>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="80"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Margin="0,24,0,0" HorizontalAlignment="center" VerticalAlignment="Stretch">
+            <Button HorizontalAlignment="Center">Hem</Button>
+            <Button Margin="0,8,0,0" HorizontalAlignment="Center">Bil</Button>
+            <Button Margin="0,8,0,0" HorizontalAlignment="Center">Motorcykel</Button>
+            <Button Margin="0,8,0,0" HorizontalAlignment="Center">Lastbil</Button>
+        </StackPanel>
+        <Button VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,20">Profil</Button>
+
+        <Frame Grid.Column="1" Content="Home"/>
+    </Grid>
 </Window>

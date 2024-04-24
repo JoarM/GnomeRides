@@ -24,5 +24,7 @@ namespace GnomeRides.View
         {
             InitializeComponent();
         }
+
+
     }
 }
