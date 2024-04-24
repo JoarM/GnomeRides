@@ -6,16 +6,18 @@
         xmlns:local="clr-namespace:GnomeRides.View"
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" x:Class="GnomeRides.View.Login"
         mc:Ignorable="d"
-        Title="Login" Height="760" Width="450"
+        Title="Login" Height="600" Width="450"
+        WindowStartupLocation="CenterScreen"
         >
     <Grid Margin="24" VerticalAlignment="Center">
         <StackPanel>
             <TextBlock FontSize="24" FontWeight="Bold">Login</TextBlock>
             <Label Margin="0,24,0,0" FontSize="14" FontWeight="Medium">Personnummer</Label>
-            <ui:TextBox Margin="0,8,0,0" />
+            <ui:TextBox x:Name="IdBox" Margin="0,8,0,0" />
             <Label Margin="0,16,0,0" FontSize="14" FontWeight="Medium">Lösenord</Label>
-            <ui:PasswordBox Margin="0,8,0,0" />
-            <ui:Button Margin="0,20,0,0" HorizontalAlignment="Stretch">Login</ui:Button>
+            <ui:PasswordBox x:Name="PasswordBox" Margin="0,8,0,0" />
+            <ui:Button x:Name="LoginBtn" Margin="0,20,0,0" HorizontalAlignment="Stretch" Click="LoginBtn_Click">Login</ui:Button>
+            <TextBlock x:Name="ErrorBox" />
         </StackPanel>
     </Grid>
 </Window>

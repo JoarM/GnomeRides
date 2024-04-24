@@ -26,8 +26,16 @@ namespace GnomeRides.View
             InitializeComponent();
         }
 
-        private void btnLogIn_Click(object sender, RoutedEventArgs e)
+        private void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
+            string? error = User.Login(IdBox.Text, PasswordBox.Text);
+            if (error != null)
+            {
+                ErrorBox.Text = error;
+                return;
+            }
+
+            ErrorBox.Text = "";
             mainWindow win = new mainWindow();
             win.Show();
             Close();
