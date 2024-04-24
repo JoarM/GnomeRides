@@ -1,5 +1,4 @@
-﻿using GnomeRides.Classes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,21 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace GnomeRides.View
 {
     /// <summary>
-    /// Interaction logic for mainWindow.xaml
+    /// Interaction logic for Home.xaml
     /// </summary>
-    public partial class mainWindow : Window
+    public partial class Home : Page
     {
-        public mainWindow()
+        public Home()
         {
             InitializeComponent();
-            _frame.Navigate(new Home());
         }
-
-
     }
 }

@@ -19,6 +19,6 @@
         </StackPanel>
         <Button VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,20">Profil</Button>
 
-        <Frame Grid.Column="1" Content="Home"/>
+        <Frame Grid.Column="1" x:Name="_frame"/>
     </Grid>
 </Window>

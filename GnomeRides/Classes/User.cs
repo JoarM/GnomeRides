@@ -1,5 +1,6 @@
 ﻿using GnomeRides.Utils;
 using MySql.Data.MySqlClient;
+using System.Text.RegularExpressions;
 
 namespace GnomeRides.Classes
 {
@@ -80,6 +81,25 @@ namespace GnomeRides.Classes
             }
 
             //TODO add regex patterns to check all inputs
+            if (!new Regex("\\d\\d\\d\\d\\d\\d\\d\\d\\d\\d\\d\\d", RegexOptions.IgnoreCase).IsMatch(id))
+            {
+                return "Ogiltigt personnummer";
+            }
+
+            if (name.Length <2)
+            {
+                return "Fyll i ditt namn";
+            }
+
+            if (!new Regex("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$", RegexOptions.IgnoreCase).IsMatch(email))
+            {
+                return "Ange en giltig e-post";
+            }
+            
+            if (password.Length < 4)
+            {
+                return "Lösenord måste minst 4 karaktärer";
+            }
 
             try
             {
