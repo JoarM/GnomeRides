@@ -18,19 +18,24 @@ using System.Windows.Shapes;
 namespace GnomeRides.View
 {
     /// <summary>
-    /// Interaction logic for LoginPage.xaml
+    /// Interaction logic for Signup.xaml
     /// </summary>
-    public partial class Login : Page
+    public partial class Signup : Page
     {
-        public Login()
+        public Signup()
         {
             InitializeComponent();
         }
 
         private void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
-            string? error = User.Login(IdBox.Text, PasswordBox.Text);
-            if (error != null)
+            this.NavigationService.Navigate(new Login());
+        }
+
+        private void SignupBtn_Click(object sender, RoutedEventArgs e)
+        {
+            string? error = User.CreateAccount(IdBox.Text, PasswordBox.Text, EmailBox.Text, NameBox.Text);
+            if (error != null) 
             {
                 ErrorBox.Text = error;
                 ErrorBox.Visibility = Visibility.Visible;
@@ -40,11 +45,6 @@ namespace GnomeRides.View
             ErrorBox.Visibility = Visibility.Collapsed;
             ErrorBox.Text = "";
             WindowManager.OpenNewStandaloneWindow(new mainWindow());
-        }
-
-        private void SignupBtn_Click(object sender, RoutedEventArgs e)
-        {
-            this.NavigationService.Navigate(new Signup());
         }
     }
 }

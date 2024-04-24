@@ -13,6 +13,7 @@ namespace GnomeRides
     {
         void App_Startup(object sender, StartupEventArgs e)
         {
+            
             var root = Path.GetFullPath($"C:\\Users\\{Environment.UserName}\\source\\repos\\GnomeRides\\GnomeRides");
             DotEnv.Load(Path.Combine(root, ".env.local"));
         }

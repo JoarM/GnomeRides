@@ -1,21 +1,25 @@
-﻿<Page x:Class="GnomeRides.View.Login"
+﻿<Page x:Class="GnomeRides.View.Signup"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:GnomeRides.View"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
       xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" 
-      Title="LoginPage">
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Signup">
     <StackPanel Margin="24" VerticalAlignment="Center">
-        <TextBlock FontSize="24" FontWeight="Bold" Foreground="#13170E">Logga in</TextBlock>
+        <TextBlock FontSize="24" FontWeight="Bold" Foreground="#13170E">Skapa konto</TextBlock>
         <Label Margin="0,24,0,0" FontSize="14" FontWeight="Medium" Foreground="#13170E">Personnummer</Label>
         <ui:TextBox x:Name="IdBox" Margin="0,4,0,0" />
+        <Label Margin="0,12,0,0" FontSize="14" FontWeight="Medium" Foreground="#13170E">Namn</Label>
+        <ui:TextBox x:Name="NameBox" Margin="0,4,0,0" />
+        <Label Margin="0,12,0,0" FontSize="14" FontWeight="Medium" Foreground="#13170E">E-post</Label>
+        <ui:TextBox x:Name="EmailBox" Margin="0,4,0,0" />
         <Label Margin="0,12,0,0" FontSize="14" FontWeight="Medium" Foreground="#13170E">Lösenord</Label>
         <ui:PasswordBox x:Name="PasswordBox" Margin="0,4,0,0" />
-        <ui:Button x:Name="LoginBtn" Margin="0,16,0,0" HorizontalAlignment="Stretch" Click="LoginBtn_Click">Logga in</ui:Button>
+        <ui:Button x:Name="SignupBtn" Margin="0,16,0,0" HorizontalAlignment="Stretch" Click="SignupBtn_Click">Skapa konto</ui:Button>
         <TextBlock x:Name="ErrorBox" Visibility="Collapsed" Margin="0,8,0,0" FontWeight="Medium" Foreground="#D64E30" />
-        <Button x:Name="SignupBtn" Background="Transparent" Margin="0,8,0,0" Foreground="#13170E" BorderThickness="0" FontSize="14" FontWeight="Medium" VerticalAlignment="Center" Padding="0,0,0,0" Click="SignupBtn_Click">Skapa konto</Button>
+        <Button x:Name="LoginBtn" Background="Transparent" Margin="0,8,0,0" Foreground="#13170E" BorderThickness="0" FontSize="14" FontWeight="Medium" VerticalAlignment="Center" Padding="0,0,0,0" Click="LoginBtn_Click">Logga in</Button>
     </StackPanel>
 </Page>
