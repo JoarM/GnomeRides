@@ -13,7 +13,7 @@
         </Grid.ColumnDefinitions>
         <StackPanel Margin="0,24,0,0" HorizontalAlignment="center" VerticalAlignment="Stretch">
             <Button HorizontalAlignment="Center">Hem</Button>
-            <Button Margin="0,8,0,0" HorizontalAlignment="Center">Bil</Button>
+            <Button Margin="0,8,0,0" HorizontalAlignment="Center" Name="BtnCar" Click="BtnCar_Click">Bil</Button>
             <Button Margin="0,8,0,0" HorizontalAlignment="Center">Motorcykel</Button>
             <Button Margin="0,8,0,0" HorizontalAlignment="Center">Lastbil</Button>
         </StackPanel>

@@ -1,5 +1,4 @@
-﻿using GnomeRides.Classes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,24 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace GnomeRides.View
 {
     /// <summary>
-    /// Interaction logic for mainWindow.xaml
+    /// Interaction logic for Cars.xaml
     /// </summary>
-    public partial class mainWindow : Window
+    public partial class Cars : Page
     {
-        public mainWindow()
+        public Cars()
         {
             InitializeComponent();
-            _frame.Navigate(new Home());
-        }
-
-        private void BtnCar_Click(object sender, RoutedEventArgs e)
-        {
-            _frame.Navigate(new Cars());
         }
     }
 }
