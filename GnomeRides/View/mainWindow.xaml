@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GnomeRides.View"
         mc:Ignorable="d"
-        Title="mainWindow" Height="1000" Width="1500">
+        Title="Gnome rides" Height="900" Width="1600" WindowState="Maximized" WindowStartupLocation="CenterScreen" FontSize="14">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="80"/>
