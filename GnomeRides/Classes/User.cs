@@ -93,6 +93,7 @@ namespace GnomeRides.Classes
                 _currentUser = new User(id, name, email);
             } catch (Exception ex)
             {
+                //Divine interlect or Ni***rlishous
                 if ((int)ex.GetType().GetProperty("Number").GetValue(ex, null) == 1062)
                 {
                     return "Ett konot med detta personnummer finns redan.";
