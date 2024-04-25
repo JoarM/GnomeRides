@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GnomeRides.Components;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,13 @@ namespace GnomeRides.View
         public Home()
         {
             InitializeComponent();
+            CarContainer.Children.Add(new CarCard(new Classes.Car("LGY 677", 5, "Ford", 123, 4, "Fiesta", "Bensin", 10000, "200509227872", 500)));
+            CarContainer.Children.Add(new CarCard(new Classes.Car("LGY 677", 5, "Ford", 123, 4, "Mondeo", "Bensin", 10000, "200509227872", 500)));
+        }
+
+        private void BtnCar_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new Cars());
         }
     }
 }

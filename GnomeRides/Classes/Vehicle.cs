@@ -3,7 +3,7 @@ using MySql.Data.MySqlClient;
 
 namespace GnomeRides.Classes
 {
-    abstract class Vehicle
+    public abstract class Vehicle
     {
         protected string _reg_nr;
         protected uint _seats;
@@ -112,7 +112,7 @@ namespace GnomeRides.Classes
         }
     }
 
-    class Car : Vehicle
+    public class Car : Vehicle
     {
         private readonly uint _co2;
 

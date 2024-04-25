@@ -20,7 +20,7 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <ui:Button VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Column="0">
+            <ui:Button VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Column="0" Name="BtnCar" Click="BtnCar_Click">
                 <StackPanel>
                     <Viewbox Stretch="Fill" Height="72" Width="72">
                         <Grid>
@@ -52,5 +52,8 @@
             </ui:Button>
         </Grid>
         <TextBlock Margin="0,32,0,0" FontSize="32" Foreground="#13170E" FontWeight="Bold">Bilar</TextBlock>
+        <WrapPanel Name="CarContainer">
+            
+        </WrapPanel>
     </StackPanel>
 </Page>

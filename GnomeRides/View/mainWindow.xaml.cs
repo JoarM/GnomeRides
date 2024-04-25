@@ -30,5 +30,10 @@ namespace GnomeRides.View
         {
             _frame.Navigate(new Cars());
         }
+
+        private void BtnHome_Click(object sender, RoutedEventArgs e)
+        {
+            _frame.Navigate(new Home());
+        }
     }
 }
