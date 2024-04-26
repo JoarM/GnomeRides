@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using GnomeRides.Classes;
 
 namespace GnomeRides.View
 {
@@ -21,11 +22,34 @@ namespace GnomeRides.View
     /// </summary>
     public partial class Home : Page
     {
+        private int cars = 0;
         public Home()
         {
             InitializeComponent();
-            CarContainer.Children.Add(new CarCard(new Classes.Car("LGY 677", 5, "Ford", 123, 4, "Fiesta", "Bensin", 10000, "200509227872", 500)));
-            CarContainer.Children.Add(new CarCard(new Classes.Car("LGY 677", 5, "Ford", 123, 4, "Mondeo", "Bensin", 10000, "200509227872", 500)));
+            AppendCar(new Car("LGY 677", 5, "Ford", 123, 4, "Fiesta", "Bensin", 10000, "200509227872", 500));
+            AppendCar(new Car("LGY 677", 5, "Ford", 123, 4, "Fiesta", "Bensin", 10000, "200509227872", 500));
+            AppendCar(new Car("LGY 677", 5, "Ford", 123, 4, "Fiesta", "Bensin", 10000, "200509227872", 500));
+            AppendCar(new Car("LGY 677", 5, "Ford", 123, 4, "Fiesta", "Bensin", 10000, "200509227872", 500));
+        }
+
+        private void AppendCar(Car car)
+        {
+            CarCard card = new CarCard(car);
+            if (cars > 2)
+            {
+                card.Margin = new Thickness(0,16,0,0);
+            }
+            cars++;
+            if (cars % 3 == 1)
+            {
+                Panel1.Children.Add(card);
+            } else if (cars % 3 == 2)
+            {
+                Panel2.Children.Add(card);
+            } else
+            {
+                Panel3.Children.Add(card);
+            }
         }
 
         private void BtnCar_Click(object sender, RoutedEventArgs e)
