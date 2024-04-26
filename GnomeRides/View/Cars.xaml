@@ -12,19 +12,21 @@
 
     <StackPanel MaxWidth="1024" Margin="24">
         <TextBlock FontSize="32" Foreground="#13170E" FontWeight="Bold">Bilar</TextBlock>
-        <Grid Height="68" Margin="0,16,0,0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="21*" />
-                <ColumnDefinition Width="19*"/>
-                <ColumnDefinition Width="16" />
-                <ColumnDefinition Width="40*" />
-                <ColumnDefinition Width="16" />
-                <ColumnDefinition Width="40*" />
-            </Grid.ColumnDefinitions>
+        <Border BorderThickness="2" CornerRadius="12,12,12,12" BorderBrush="#CDD4C4">
+            <Grid Height="68" Margin="12">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="16" />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="16" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <TextBlock HorizontalAlignment="left" FontSize="20">Pris</TextBlock>
+                <TextBlock Name="Wolfeschlegelsteinhausen" HorizontalAlignment="Right">0 - 1000+ kr/timme</TextBlock>
+                <xctk:RangeSlider Grid.Column="0" HorizontalAlignment="stretch" VerticalAlignment="Center" Maximum="1000" Minimum="0" HigherValue="1000" Name="PriceSlider" HigherValueChanged="PriceSlider_HigherValueChanged"/>
+            </Grid>
+        </Border>
 
-            <xctk:RangeSlider HorizontalAlignment="Left" Margin="101,10,0,0" VerticalAlignment="Top" Width="233" Maximum="10000" Minimum="0"/>
-
-        </Grid>
     </StackPanel>
 
 </Page>
