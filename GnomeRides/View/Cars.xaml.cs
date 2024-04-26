@@ -24,5 +24,14 @@ namespace GnomeRides.View
         {
             InitializeComponent();
         }
+
+        private void PriceSlider_HigherValueChanged(object sender, RoutedEventArgs e)
+        {
+            ottovordemgentchenfeld(PriceSlider.LowerValue, PriceSlider.HigherValue);
+        }
+
+        private void ottovordemgentchenfeld(double x, double y) {
+            Wolfeschlegelsteinhausen.Text = ($"{Math.Round(x) * 10} - {Math.Round(y) * 10}{(y == PriceSlider.Maximum ? "+": null)} kr/timme");
+        }
     }
 }
