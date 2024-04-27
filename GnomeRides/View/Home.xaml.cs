@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using GnomeRides.Classes;
+using GnomeRides.Controlers;
 
 namespace GnomeRides.View
 {
@@ -26,30 +27,10 @@ namespace GnomeRides.View
         public Home()
         {
             InitializeComponent();
-            AppendCar(new Car("LGY 677", 5, "Ford", 123, 4, "Fiesta", "Bensin", 10000, "200509227872", 500));
-            AppendCar(new Car("LGY 677", 5, "Ford", 123, 4, "Fiesta", "Bensin", 10000, "200509227872", 500));
-            AppendCar(new Car("LGY 677", 5, "Ford", 123, 4, "Fiesta", "Bensin", 10000, "200509227872", 500));
-            AppendCar(new Car("LGY 677", 5, "Ford", 123, 4, "Fiesta", "Bensin", 10000, "200509227872", 500));
-        }
-
-        private void AppendCar(Car car)
-        {
-            CarCard card = new CarCard(car);
-            if (cars > 2)
-            {
-                card.Margin = new Thickness(0,16,0,0);
-            }
-            cars++;
-            if (cars % 3 == 1)
-            {
-                Panel1.Children.Add(card);
-            } else if (cars % 3 == 2)
-            {
-                Panel2.Children.Add(card);
-            } else
-            {
-                Panel3.Children.Add(card);
-            }
+            autoGrid.AddChild(new CarCard(CarController.GetCars().Item1[0]));
+            autoGrid.AddChild(new CarCard(new Car("LGY 677", 5, "Ford", 123, 4, "Fiesta", "Bensin", 10000, "200509227872", 500)));
+            autoGrid.AddChild(new CarCard(new Car("LGY 677", 5, "Ford", 123, 4, "Fiesta", "Bensin", 10000, "200509227872", 500)));
+            autoGrid.AddChild(new CarCard(new Car("LGY 677", 5, "Ford", 123, 4, "Fiesta", "Bensin", 10000, "200509227872", 500)));
         }
 
         private void BtnCar_Click(object sender, RoutedEventArgs e)

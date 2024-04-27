@@ -8,6 +8,7 @@
       d:DesignHeight="1024" d:DesignWidth="1440"
       Title="Home"
       xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" 
+      xmlns:components="clr-namespace:GnomeRides.Components"
       >
     <ScrollViewer>
         <StackPanel MaxWidth="1024" Margin="24">
@@ -53,25 +54,7 @@
                 </ui:Button>
             </Grid>
             <TextBlock Margin="0,32,0,0" FontSize="32" Foreground="#13170E" FontWeight="Bold">Bilar</TextBlock>
-            <Grid Margin="0,16,0,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition Width="16" />
-                    <ColumnDefinition />
-                    <ColumnDefinition Width="16" />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-
-                <StackPanel Name="Panel1" Grid.Column="0">
-
-                </StackPanel>
-                <StackPanel Name="Panel2" Grid.Column="2">
-
-                </StackPanel>
-                <StackPanel Name="Panel3" Grid.Column="4">
-
-                </StackPanel>
-            </Grid>
+            <components:AutoGrid x:Name="autoGrid" Margin="0,16,0,0" />
         </StackPanel>
     </ScrollViewer>
 </Page>

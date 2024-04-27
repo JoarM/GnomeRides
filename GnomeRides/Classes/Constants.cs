@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GnomeRides.Classes
 {
-    internal class Constans
+    internal class Constants
     {
         public static readonly List<KeyValuePair<uint, string>> VehicleManufacturers = new List<KeyValuePair<uint, string>>() 
         {

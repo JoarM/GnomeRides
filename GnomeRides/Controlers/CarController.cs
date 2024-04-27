@@ -35,11 +35,11 @@ namespace GnomeRides.Controlers
                     Car car = new(
                         reader.GetString(0), 
                         reader.GetUInt16(1),
-                        Constans.VehicleManufacturers.Find(kvp => kvp.Key == reader.GetUInt16(2)).Value, 
+                        Constants.VehicleManufacturers.Find(kvp => kvp.Key == reader.GetUInt16(2)).Value, 
                         reader.GetUInt32(3), 
                         reader.GetUInt16(4), 
                         reader.GetString(5),
-                        Constans.FuelTypes.Find(kvp => kvp.Key == reader.GetUInt16(6)).Value, 
+                        Constants.FuelTypes.Find(kvp => kvp.Key == reader.GetUInt16(6)).Value, 
                         reader.GetUInt32(7),
                         reader.GetString(8),
                         reader.GetUInt16(9)
@@ -85,11 +85,11 @@ namespace GnomeRides.Controlers
                 car = new(
                     reader.GetString(0),
                     reader.GetUInt16(1),
-                    Constans.VehicleManufacturers.Find(kvp => kvp.Key == reader.GetUInt16(2)).Value,
+                    Constants.VehicleManufacturers.Find(kvp => kvp.Key == reader.GetUInt16(2)).Value,
                     reader.GetUInt32(3),
                     reader.GetUInt16(4),
                     reader.GetString(5),
-                    Constans.FuelTypes.Find(kvp => kvp.Key == reader.GetUInt16(6)).Value,
+                    Constants.FuelTypes.Find(kvp => kvp.Key == reader.GetUInt16(6)).Value,
                     reader.GetUInt32(7),
                     reader.GetString(8),
                     reader.GetUInt16(9)
@@ -139,7 +139,7 @@ namespace GnomeRides.Controlers
                 cmd.Parameters.AddWithValue("@owner_id", User.CurrentUser.Id);
                 cmd.Parameters.AddWithValue("@co2", co2);
                 cmd.ExecuteNonQuery();
-            } catch
+            } catch (Exception ex)
             {
                 return "Ett oväntat fel uppstod";
             }

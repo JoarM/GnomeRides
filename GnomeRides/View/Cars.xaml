@@ -6,6 +6,7 @@
       xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
       xmlns:local="clr-namespace:GnomeRides.View"
       xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" x:Class="GnomeRides.View.Cars"
+      xmlns:components="clr-namespace:GnomeRides.Components"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Cars">
@@ -23,10 +24,9 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock HorizontalAlignment="left" FontSize="20">Pris</TextBlock>
                 <TextBlock Name="Wolfeschlegelsteinhausen" HorizontalAlignment="Right">0 - 1000+ kr/timme</TextBlock>
-                <xctk:RangeSlider Grid.Column="0" HorizontalAlignment="stretch" VerticalAlignment="Center" Maximum="1000" Minimum="0" HigherValue="1000" Name="PriceSlider" HigherValueChanged="PriceSlider_HigherValueChanged"/>
+                <xctk:RangeSlider Grid.Column="0" HorizontalAlignment="stretch" VerticalAlignment="Center" Maximum="1000" Minimum="0" HigherValue="1000" Name="PriceSlider" HigherValueChanged="PriceSlider_HigherValueChanged" LowerValueChanged="PriceSlider_LowerValueChanged"/>
             </Grid>
         </Border>
-
+        <components:AutoGrid Margin="0,24,0,0" x:Name="CarGrid" />
     </StackPanel>
-
 </Page>
