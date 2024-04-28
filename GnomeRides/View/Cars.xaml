@@ -22,9 +22,13 @@
                     <ColumnDefinition Width="16" />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <TextBlock HorizontalAlignment="left" FontSize="20">Pris</TextBlock>
+                <TextBlock HorizontalAlignment="left" FontSize="14">Pris</TextBlock>
                 <TextBlock Name="Wolfeschlegelsteinhausen" HorizontalAlignment="Right">0 - 1000+ kr/timme</TextBlock>
                 <xctk:RangeSlider Grid.Column="0" HorizontalAlignment="stretch" VerticalAlignment="Center" Maximum="1000" Minimum="0" HigherValue="1000" Name="PriceSlider" HigherValueChanged="PriceSlider_HigherValueChanged" LowerValueChanged="PriceSlider_LowerValueChanged"/>
+                <StackPanel Grid.Column="2" VerticalAlignment="Center">
+                    <Label>Tillverkare</Label>
+                    <ComboBox x:Name="CbxManufacturers" Margin="0,4,0,0" SelectionChanged="CbxManufacturers_SelectionChanged" />
+                </StackPanel>
             </Grid>
         </Border>
         <components:AutoGrid Margin="0,24,0,0" x:Name="CarGrid" />
