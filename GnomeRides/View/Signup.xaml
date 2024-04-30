@@ -8,6 +8,25 @@
       xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Signup">
+    <Page.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#8AAD59" />
+            <Setter Property="Foreground" Value="#F3F7EE" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Height" Value="40" />
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="6" />
+                </Style>
+            </Style.Resources>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#808AAD59" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+    </Page.Resources>
     <StackPanel Margin="24" VerticalAlignment="Center">
         <TextBlock FontSize="24" FontWeight="Bold" Foreground="#13170E">Skapa konto</TextBlock>
         <Label Margin="0,24,0,0" FontSize="14" FontWeight="Medium" Foreground="#13170E">Personnummer</Label>
@@ -18,7 +37,7 @@
         <ui:TextBox x:Name="EmailBox" Margin="0,4,0,0" />
         <Label Margin="0,12,0,0" FontSize="14" FontWeight="Medium" Foreground="#13170E">Lösenord</Label>
         <ui:PasswordBox x:Name="PasswordBox" Margin="0,4,0,0" />
-        <ui:Button x:Name="SignupBtn" Margin="0,16,0,0" HorizontalAlignment="Stretch" Click="SignupBtn_Click">Skapa konto</ui:Button>
+        <Button x:Name="SignupBtn" Margin="0,16,0,0" HorizontalAlignment="Stretch" Click="SignupBtn_Click">Skapa konto</Button>
         <TextBlock x:Name="ErrorBox" Visibility="Collapsed" Margin="0,8,0,0" FontWeight="Medium" Foreground="#D64E30" />
         <Button x:Name="LoginBtn" Background="Transparent" Margin="0,8,0,0" Foreground="#13170E" BorderThickness="0" FontSize="14" FontWeight="Medium" VerticalAlignment="Center" Padding="0,0,0,0" Click="LoginBtn_Click">Logga in</Button>
     </StackPanel>
