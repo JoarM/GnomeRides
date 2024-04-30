@@ -13,8 +13,8 @@
         <Label Margin="0,24,0,0" FontSize="14" FontWeight="Medium" Foreground="#13170E">Personnummer</Label>
         <ui:TextBox x:Name="IdBox" Margin="0,4,0,0" />
         <Label Margin="0,12,0,0" FontSize="14" FontWeight="Medium" Foreground="#13170E">Lösenord</Label>
-        <ui:PasswordBox x:Name="PasswordBox" Margin="0,4,0,0" />
-        <ui:Button x:Name="LoginBtn" Margin="0,16,0,0" HorizontalAlignment="Stretch" Click="LoginBtn_Click">Logga in</ui:Button>
+        <PasswordBox x:Name="PasswordBox" Margin="0,4,0,0" Background="#F9FaF6" />
+        <Button Template="{DynamicResource DefaultButton}" Foreground="#FFF3F7EE" FontWeight="Medium" FontSize="14"  x:Name="LoginBtn" Margin="0,16,0,0" HorizontalAlignment="Stretch" Click="LoginBtn_Click">Logga in</Button>
         <TextBlock x:Name="ErrorBox" Visibility="Collapsed" Margin="0,8,0,0" FontWeight="Medium" Foreground="#D64E30" />
         <Button x:Name="SignupBtn" Background="Transparent" Margin="0,8,0,0" Foreground="#13170E" BorderThickness="0" FontSize="14" FontWeight="Medium" VerticalAlignment="Center" Padding="0,0,0,0" Click="SignupBtn_Click">Skapa konto</Button>
     </StackPanel>
