@@ -29,7 +29,7 @@ namespace GnomeRides.View
 
         private void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
-            string? error = User.Login(IdBox.Text, PasswordBox.Text);
+            string? error = User.Login(IdBox.Text, PasswordBox.Password);
             if (error != null)
             {
                 ErrorBox.Text = error;
