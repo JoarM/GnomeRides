@@ -1,0 +1,14 @@
+﻿<Page x:Class="GnomeRides.View.Profile"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:GnomeRides.View"
+      mc:Ignorable="d" 
+      d:DesignHeight="1024" d:DesignWidth="1440"
+      Title="Profile">
+
+    <StackPanel Margin="0,24" MaxWidth="1024">
+        <TextBlock FontSize="24" FontWeight="Bold" x:Name="TxtBlkName">Joar</TextBlock>
+    </StackPanel>
+</Page>
