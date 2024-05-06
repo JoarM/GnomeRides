@@ -73,9 +73,10 @@ namespace GnomeRides.Controlers
                     "vehicle.daily_rate," +
                     " vehicle.owner_id, " +
                     "car.co2 " +
-                    "FROM vehicle WHERE vehicle.reg_nr = @reg_nr" +
+                    "FROM vehicle " +
                     "INNER JOIN car " +
-                    "ON vehicle.reg_nr = car.reg_nr;";
+                    "ON vehicle.reg_nr = car.reg_nr " +
+                    "WHERE vehicle.reg_nr = @reg_nr;";
                 cmd.Parameters.AddWithValue("@reg_nr", regNr);
                 using MySqlDataReader reader = cmd.ExecuteReader();
                 if (!reader.Read())
@@ -95,7 +96,7 @@ namespace GnomeRides.Controlers
                     reader.GetUInt16(9)
                 );
             }
-            catch
+            catch (Exception ex)
             {
                 return (car, "Ett oväntat fel uppstod");
             }
