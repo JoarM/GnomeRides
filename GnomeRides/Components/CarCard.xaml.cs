@@ -1,4 +1,5 @@
 ﻿using GnomeRides.Classes;
+using GnomeRides.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,7 @@ namespace GnomeRides.Components
     /// </summary>
     public partial class CarCard : UserControl
     {
+        private Car car;
         public CarCard(Car car)
         {
             InitializeComponent();
@@ -29,9 +31,16 @@ namespace GnomeRides.Components
             bitmap.UriSource = new Uri("https://unifleet.se/wp-content/uploads/2020/10/Volvo-V60-Recharge-Vapour-Grey.png");
             bitmap.EndInit();
 
+            this.car = car;
             ImgCover.Source = bitmap;
             TxtBlkName.Text = $"{car.Manufacturer} {car.Model}";
             TxtBlkPrice.Text = $"{car.DailyRate / 100} kr/dag";
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService svc = NavigationService.GetNavigationService(this);
+            svc.Navigate(new CarPage(car.RegNr));
         }
     }
 }
