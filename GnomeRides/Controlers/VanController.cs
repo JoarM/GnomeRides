@@ -100,7 +100,7 @@ namespace GnomeRides.Controlers
                     "van.max_weight, " +
                     "van.volume " +
                     "FROM vehicle WHERE vehicle.reg_nr = @reg_nr" +
-                    "INNER JOIN motorcycle " +
+                    "INNER JOIN van " +
                     "ON vehicle.reg_nr = van.reg_nr;";
                 cmd.Parameters.AddWithValue("@reg_nr", regNr);
                 using MySqlDataReader reader = cmd.ExecuteReader();

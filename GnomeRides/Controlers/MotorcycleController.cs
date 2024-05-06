@@ -26,7 +26,7 @@ namespace GnomeRides.Controlers
                     "vehicle.owner_id, " +
                     "motorcycle.cc " +
                     "FROM vehicle " +
-                    "INNER JOIN car " +
+                    "INNER JOIN motorcycle " +
                     "ON vehicle.reg_nr = motorcycle.reg_nr;";
                 using MySqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
