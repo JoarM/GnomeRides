@@ -46,7 +46,7 @@ namespace GnomeRides.Controlers
                     MotorcycleList.Add(motorcycle);
                 }
             }
-            catch
+            catch (Exception ex)
             {
                 return (MotorcycleList, "Ett oväntat fel uppstod");
             }

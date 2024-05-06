@@ -43,7 +43,7 @@ namespace GnomeRides.View
 
         private void BtnMotorcycle_Click(object sender, RoutedEventArgs e)
         {
-            _frame.Navigate(new Cars());
+            _frame.Navigate(new Motorcycles());
         }
 
         private void BtnProfile_Click(object sender, RoutedEventArgs e)
