@@ -45,5 +45,10 @@ namespace GnomeRides.View
         {
             _frame.Navigate(new Cars());
         }
+
+        private void BtnProfile_Click(object sender, RoutedEventArgs e)
+        {
+            _frame.Navigate(new Profile());
+        }
     }
 }

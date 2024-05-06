@@ -25,6 +25,8 @@ namespace GnomeRides.View
         {
             InitializeComponent();
             TxtBlkName.Text = User.CurrentUser.Name;
+            TxtBlkEmail.Text = User.CurrentUser.Email;
+            
         }
     }
 }
