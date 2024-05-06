@@ -38,7 +38,7 @@ namespace GnomeRides.Controlers
                     "van.max_weight, " +
                     "van.volume " +
                     "FROM vehicle " +
-                    "INNER JOIN car " +
+                    "INNER JOIN van " +
                     "ON vehicle.reg_nr = van.reg_nr;";
                 using MySqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())

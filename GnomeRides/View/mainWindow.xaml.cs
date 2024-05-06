@@ -50,5 +50,10 @@ namespace GnomeRides.View
         {
             _frame.Navigate(new Profile());
         }
+
+        private void BtnVan_Click(object sender, RoutedEventArgs e)
+        {
+            _frame.Navigate(new Vans());
+        }
     }
 }

@@ -15,7 +15,7 @@
             <Button HorizontalAlignment="Center" Name="BtnHome" Click="BtnHome_Click">Hem</Button>
             <Button Margin="0,8,0,0" HorizontalAlignment="Center" Name="BtnCar" Click="BtnCar_Click">Bil</Button>
             <Button Margin="0,8,0,0" HorizontalAlignment="Center" Name ="BtnMotorcycle" Click="BtnMotorcycle_Click">Motorcykel</Button>
-            <Button Margin="0,8,0,0" HorizontalAlignment="Center">Lastbil</Button>
+            <Button Margin="0,8,0,0" HorizontalAlignment="Center" Name="BtnVan" Click="BtnVan_Click">Lastbil</Button>
             <Button Margin="0,8,0,0" HorizontalAlignment="Center" Name="Add" Click="Add_Click">Lägg till</Button>
         </StackPanel>
         <Button VerticalAlignment="Bottom" Name="BtnProfile" HorizontalAlignment="Center" Margin="0,0,0,20" Click="BtnProfile_Click">Profil</Button>

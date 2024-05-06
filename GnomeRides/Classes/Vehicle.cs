@@ -208,7 +208,7 @@ namespace GnomeRides.Classes
         }
     }
 
-    class Van : Vehicle
+    public class Van : Vehicle
     {
         private readonly uint _outer_width;
         private readonly uint _outer_height;
