@@ -18,7 +18,7 @@
             <Button Margin="0,8,0,0" HorizontalAlignment="Center">Lastbil</Button>
             <Button Margin="0,8,0,0" HorizontalAlignment="Center" Name="Add" Click="Add_Click">Lägg till</Button>
         </StackPanel>
-        <Button VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,20">Profil</Button>
+        <Button VerticalAlignment="Bottom" Name="BtnProfile" HorizontalAlignment="Center" Margin="0,0,0,20" Click="BtnProfile_Click">Profil</Button>
 
         <Frame Grid.Column="1" x:Name="_frame"/>
     </Grid>

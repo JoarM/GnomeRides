@@ -6,9 +6,14 @@
       xmlns:local="clr-namespace:GnomeRides.View"
       mc:Ignorable="d" 
       d:DesignHeight="1024" d:DesignWidth="1440"
+      xmlns:components="clr-namespace:GnomeRides.Components"
       Title="Profile">
 
-    <StackPanel Margin="0,24" MaxWidth="1024">
-        <TextBlock FontSize="24" FontWeight="Bold" x:Name="TxtBlkName">Joar</TextBlock>
+    <StackPanel Margin="24" MaxWidth="1024">
+        <TextBlock FontSize="24" FontWeight="Bold" x:Name="TxtBlkName"></TextBlock>
+        <TextBlock FontSize="14" FontWeight="Medium" Margin="0,8,0,0" x:Name="TxtBlkEmail"></TextBlock>
+        <Border Height="1" BorderThickness="1" Margin="0,24" BorderBrush="#777" />
+        <TextBlock FontSize="20" FontWeight="Bold">Dina bokningar</TextBlock>
+        <components:AutoGrid Margin="0,16,0,0" x:Name="AutoGrid" />
     </StackPanel>
 </Page>
