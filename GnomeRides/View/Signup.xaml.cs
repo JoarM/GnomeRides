@@ -34,7 +34,7 @@ namespace GnomeRides.View
 
         private void SignupBtn_Click(object sender, RoutedEventArgs e)
         {
-            string? error = User.CreateAccount(IdBox.Text, PasswordBox.Text, EmailBox.Text, NameBox.Text);
+            string? error = User.CreateAccount(IdBox.Text, PasswordBox.Password, EmailBox.Text, NameBox.Text);
             if (error != null) 
             {
                 ErrorBox.Text = error;
