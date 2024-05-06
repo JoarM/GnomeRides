@@ -27,7 +27,6 @@ namespace GnomeRides.View
         public Home()
         {
             InitializeComponent();
-            autoGrid.AddChild(new CarCard(CarController.GetCars().Item1[0]));
             autoGrid.AddChild(new CarCard(new Car("LGY 677", 5, "Ford", 123, 4, "Fiesta", "Bensin", 10000, "200509227872", 500)));
             autoGrid.AddChild(new CarCard(new Car("LGY 677", 5, "Ford", 123, 4, "Fiesta", "Bensin", 10000, "200509227872", 500)));
             autoGrid.AddChild(new CarCard(new Car("LGY 677", 5, "Ford", 123, 4, "Fiesta", "Bensin", 10000, "200509227872", 500)));

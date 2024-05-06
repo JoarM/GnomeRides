@@ -160,11 +160,11 @@ namespace GnomeRides.Classes
         }
     }
 
-    class MotorCycle : Vehicle
+    public class Motorcycle : Vehicle
     {
         private readonly uint _cc;
 
-        public MotorCycle(string reg_nr,
+        public Motorcycle(string reg_nr,
             uint seats,
             string manufacturer,
             uint mileage,

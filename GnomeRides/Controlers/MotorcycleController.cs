@@ -10,9 +10,9 @@ namespace GnomeRides.Controlers
         /// Gives you a list of all motorcycles
         /// </summary>
         /// <returns>A tuple containg a list of motorcycles and an error message or null</returns>
-        public static (List<MotorCycle>, string?) GetMotorcycles()
+        public static (List<Motorcycle>, string?) GetMotorcycles()
         {
-            List<MotorCycle> MotorcycleList = new();
+            List<Motorcycle> MotorcycleList = new();
             try
             {
                 using MySqlCommand cmd = MySqlAdapter.Connection.CreateCommand();
@@ -31,7 +31,7 @@ namespace GnomeRides.Controlers
                 using MySqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    MotorCycle motorcycle = new(
+                    Motorcycle motorcycle = new(
                         reader.GetString(0),
                         reader.GetUInt16(1),
                         Constants.VehicleManufacturers.Find(kvp => kvp.Key == reader.GetUInt16(2)).Value,
@@ -58,9 +58,9 @@ namespace GnomeRides.Controlers
         /// </summary>
         /// <param name="regNr"></param>
         /// <returns>A tuple containing a motorcycle or null and an error message or null</returns>
-        public static (MotorCycle?, string?) GetMotorcycleByRegNr(string regNr)
+        public static (Motorcycle?, string?) GetMotorcycleByRegNr(string regNr)
         {
-            MotorCycle? motorcycle = null;
+            Motorcycle? motorcycle = null;
             try
             {
                 using MySqlCommand cmd = MySqlAdapter.Connection.CreateCommand();

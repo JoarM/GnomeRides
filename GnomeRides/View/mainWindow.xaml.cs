@@ -40,5 +40,10 @@ namespace GnomeRides.View
         {
             _frame.Navigate(new AddVehicle());
         }
+
+        private void BtnMotorcycle_Click(object sender, RoutedEventArgs e)
+        {
+            _frame.Navigate(new Cars());
+        }
     }
 }
