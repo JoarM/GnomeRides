@@ -1,11 +1,6 @@
 ﻿using GnomeRides.Classes;
 using GnomeRides.Utils;
 using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GnomeRides.Controlers
 {
@@ -43,7 +38,7 @@ namespace GnomeRides.Controlers
                 using MySqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    Van motorcycle = new(
+                    Van van = new(
                         reader.GetString(0),
                         reader.GetUInt16(1),
                         Constants.VehicleManufacturers.Find(kvp => kvp.Key == reader.GetUInt16(2)).Value,
@@ -62,10 +57,10 @@ namespace GnomeRides.Controlers
                         reader.GetUInt32(15),
                         reader.GetUInt32(16)
                     );
-                    VanList.Add(motorcycle);
+                    VanList.Add(van);
                 }
             }
-            catch
+            catch 
             {
                 return (VanList, "Ett oväntat fel uppstod");
             }
@@ -168,7 +163,7 @@ namespace GnomeRides.Controlers
                 using MySqlCommand cmd = MySqlAdapter.Connection.CreateCommand();
                 cmd.CommandText = "INSERT INTO vehicle (reg_nr, seats, manufacturer, mileage, wheels, model, fuel_type, daily_rate, owner_id) " +
                     "VALUES (@reg_nr, @seats, @manufacturer, @mileage, @wheels, @model, @fuel_type, @daily_rate, @owner_id);" +
-                    "INSERT INTO motorcycle (reg_nr, outer_width, outher_height, outer_length, inner_width, inner_height, inner_length, max_weight, volume) " +
+                    "INSERT INTO van (reg_nr, outer_width, outher_height, outer_length, inner_width, inner_height, inner_length, max_weight, volume) " +
                     "VALUES (@reg_nr, @outer_width, @outer_height, @outer_length, @inner_width, @innner_height, @inner_length, @max_weight, @volume);";
                 cmd.Parameters.AddWithValue("@reg_nr", regNr);
                 cmd.Parameters.AddWithValue("@seats", seats);
@@ -189,7 +184,7 @@ namespace GnomeRides.Controlers
                 cmd.Parameters.AddWithValue("@volume", volume);
                 cmd.ExecuteNonQuery();
             }
-            catch
+            catch (Exception ex)
             {
                 return "Ett oväntat fel uppstod";
             }

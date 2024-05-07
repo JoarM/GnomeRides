@@ -1,0 +1,1 @@
+﻿ALTER TABLE `van` ADD `inner_length` mediumint UNSIGNED NOT NULL;

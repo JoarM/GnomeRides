@@ -38,8 +38,7 @@ namespace GnomeRides.View
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             //Todo add checks
-            // BYT TILL VAN
-            string? error = MotorcycleController.AddMotorcycle(TbxReg.Text,
+            string? error = VanController.AddVan(TbxReg.Text,
             uint.Parse(TbxSeats.Text),
             Constants.VehicleManufacturers.Find(kvp => kvp.Value == CbxManufacturer.SelectedItem.ToString()).Key,
             uint.Parse(TbxMileage.Text),
@@ -47,7 +46,14 @@ namespace GnomeRides.View
             TbxModel.Text,
             Constants.VehicleManufacturers.Find(kvp => kvp.Value == CbxFuelType.SelectedItem.ToString()).Key,
             uint.Parse(TbxDailyRate.Text) * 100,
-            uint.Parse(TbxCC.Text)
+            uint.Parse(TbxOuterWidth.Text),
+            uint.Parse(TbxOuterHeight.Text),
+            uint.Parse(TbxOuterLength.Text),
+            uint.Parse(TbxInnerWidth.Text),
+            uint.Parse(TbxInnerHeight.Text),
+            uint.Parse(TbxInnerLength.Text),
+            uint.Parse(TbxMaxWeight.Text),
+            uint.Parse(TbxVolume.Text)
             );
             if (error != null)
             {

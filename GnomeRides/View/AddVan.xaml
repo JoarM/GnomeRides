@@ -30,6 +30,8 @@
             <Label FontWeight="Medium" Margin="0,12,0,0">Hjul antal</Label>
             <TextBox Margin="0,4,0,0" Name="TbxWheels" />
             <TextBlock Visibility="Collapsed" x:Name="TxtErrorWheels" Margin="0,4,0,0" />
+            <Label FontWeight="Medium">Volym</Label>
+            <TextBox Margin="0,4,0,0" Name="TbxVolume" />
         </StackPanel>
 
         <StackPanel Grid.Column="2">
@@ -45,11 +47,23 @@
             <Label FontWeight="Medium" Margin="0,12,0,0">Dags pris Kr/Dag</Label>
             <TextBox Margin="0,4,0,0" Name="TbxDailyRate" />
             <TextBlock Visibility="Collapsed" x:Name="TxtErrorDailyRate" Margin="0,4,0,0" />
+            <Label FontWeight="Medium">Maxvikt</Label>
+            <TextBox Margin="0,4,0,0" Name="TbxMaxWeight" />
         </StackPanel>
 
         <StackPanel Grid.Column="4">
-            <Label FontWeight="Medium">Volym (m^2)</Label>
-            <TextBox Margin="0,4,0,0" Name="TbxCC" />
+            <Label FontWeight="Medium">Yttre Bredd</Label>
+            <TextBox Margin="0,4,0,0" Name="TbxOuterWidth" />
+            <Label FontWeight="Medium">Yttre Höjd</Label>
+            <TextBox Margin="0,4,0,0" Name="TbxOuterHeight" />
+            <Label FontWeight="Medium">Yttre Längd</Label>
+            <TextBox Margin="0,4,0,0" Name="TbxOuterLength" />
+            <Label FontWeight="Medium">inndre Bredd</Label>
+            <TextBox Margin="0,4,0,0" Name="TbxInnerWidth" />
+            <Label FontWeight="Medium">Innre Höjd</Label>
+            <TextBox Margin="0,4,0,0" Name="TbxInnerHeight" />
+            <Label FontWeight="Medium">innre Längd</Label>
+            <TextBox Margin="0,4,0,0" Name="TbxInnerLength" />
             <TextBlock Visibility="Collapsed" x:Name="TxtErrorCC" Margin="0,4,0,0" />
             <Button Margin="0,12,0,0" HorizontalAlignment="Stretch" Click="Button_Click">Lägg till lastbil</Button>
         </StackPanel>
