@@ -79,9 +79,9 @@ namespace GnomeRides.Classes
             {
                 using (MySqlCommand cmd = MySqlAdapter.Connection.CreateCommand())
                 {
-                    cmd.CommandText = "GET reg_nr FROM vehicle WHERE reg_nr = @reg_nr " +
-                        "AND @start_date BETWEEN start_date AND end_date " +
-                        "OR @end_date BETWEEN start_date AND end_date;";
+                    cmd.CommandText = "SELECT reg_nr FROM loan WHERE reg_nr = @reg_nr " +
+                        "AND start_date BETWEEN @start_date AND @end_date " +
+                        "OR end_date BETWEEN @start_date AND @end_date;";
                     cmd.Parameters.AddWithValue("@reg_nr", RegNr);
                     cmd.Parameters.AddWithValue("@start_date", StartDate);
                     cmd.Parameters.AddWithValue("@end_date", EndDate);
@@ -99,12 +99,12 @@ namespace GnomeRides.Classes
                         "VALUES (@start_date, @end_date, @price, @loan_owner_id, @reg_nr);";
                     cmd.Parameters.AddWithValue("@start_date", StartDate);
                     cmd.Parameters.AddWithValue("@end_date", EndDate);
-                    cmd.Parameters.AddWithValue("@price", rentDays.TotalDays * DailyRate);
+                    cmd.Parameters.AddWithValue("@price", (rentDays.TotalDays + 1) * DailyRate);
                     cmd.Parameters.AddWithValue("@loan_owner_id", User.CurrentUser.Id);
                     cmd.Parameters.AddWithValue("@reg_nr", RegNr);
                     cmd.ExecuteNonQuery();
                 }
-            } catch 
+            } catch
             {
                 return -1;
             }
@@ -149,7 +149,7 @@ namespace GnomeRides.Classes
         /// <returns>An error message on error and null on success</returns>
         public string? LoanCar(DateOnly StartDate, DateOnly EndDate)
         {
-            int? error = this.LoanVehicle(StartDate, EndDate);
+            int? error = LoanVehicle(StartDate, EndDate);
             return error switch
             {
                 null => null,
