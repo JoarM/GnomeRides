@@ -163,8 +163,8 @@ namespace GnomeRides.Controlers
                 using MySqlCommand cmd = MySqlAdapter.Connection.CreateCommand();
                 cmd.CommandText = "INSERT INTO vehicle (reg_nr, seats, manufacturer, mileage, wheels, model, fuel_type, daily_rate, owner_id) " +
                     "VALUES (@reg_nr, @seats, @manufacturer, @mileage, @wheels, @model, @fuel_type, @daily_rate, @owner_id);" +
-                    "INSERT INTO van (reg_nr, outer_width, outher_height, outer_length, inner_width, inner_height, inner_length, max_weight, volume) " +
-                    "VALUES (@reg_nr, @outer_width, @outer_height, @outer_length, @inner_width, @innner_height, @inner_length, @max_weight, @volume);";
+                    "INSERT INTO van (reg_nr, outer_width, outer_height, outer_length, inner_width, inner_height, inner_length, max_weight, volume) " +
+                    "VALUES (@reg_nr, @outer_width, @outer_height, @outer_length, @inner_width, @inner_height, @inner_length, @max_weight, @volume);";
                 cmd.Parameters.AddWithValue("@reg_nr", regNr);
                 cmd.Parameters.AddWithValue("@seats", seats);
                 cmd.Parameters.AddWithValue("@manufacturer", manufacturer);
@@ -184,7 +184,7 @@ namespace GnomeRides.Controlers
                 cmd.Parameters.AddWithValue("@volume", volume);
                 cmd.ExecuteNonQuery();
             }
-            catch (Exception ex)
+            catch
             {
                 return "Ett oväntat fel uppstod";
             }
