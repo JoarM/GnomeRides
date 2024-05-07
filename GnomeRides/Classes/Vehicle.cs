@@ -149,7 +149,7 @@ namespace GnomeRides.Classes
         /// <returns>An error message on error and null on success</returns>
         public string? LoanCar(DateOnly StartDate, DateOnly EndDate)
         {
-            int? error = LoanVehicle(StartDate, EndDate);
+            int? error = this.LoanVehicle(StartDate, EndDate);
             return error switch
             {
                 null => null,
