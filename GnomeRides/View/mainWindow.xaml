@@ -11,14 +11,50 @@
             <ColumnDefinition Width="80"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <StackPanel Margin="0,24,0,0" HorizontalAlignment="center" VerticalAlignment="Stretch">
-            <Button HorizontalAlignment="Center" Name="BtnHome" Click="BtnHome_Click">Hem</Button>
-            <Button Margin="0,8,0,0" HorizontalAlignment="Center" Name="BtnCar" Click="BtnCar_Click">Bil</Button>
-            <Button Margin="0,8,0,0" HorizontalAlignment="Center" Name ="BtnMotorcycle" Click="BtnMotorcycle_Click">Motorcykel</Button>
-            <Button Margin="0,8,0,0" HorizontalAlignment="Center" Name="BtnVan" Click="BtnVan_Click">Lastbil</Button>
-            <Button Margin="0,8,0,0" HorizontalAlignment="Center" Name="Add" Click="Add_Click">Lägg till</Button>
+        <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#CDD4C4">
+            <Button HorizontalAlignment="Center" Name="BtnHome" Click="BtnHome_Click" Template="{DynamicResource IconButton}" Padding="0" Margin="0,24,0,0">
+                <Viewbox Stretch="Fill" Height="24" Width="24">
+                    <Grid>
+                        <Path Fill="#13170E" Data="M21 20C21 20.5523 20.5523 21 20 21H4C3.44772 21 3 20.5523 3 20V9.48907C3 9.18048 3.14247 8.88917 3.38606 8.69972L11.3861 2.47749C11.7472 2.19663 12.2528 2.19663 12.6139 2.47749L20.6139 8.69972C20.8575 8.88917 21 9.18048 21 9.48907V20ZM19 19V9.97815L12 4.53371L5 9.97815V19H19Z" Width="24" Height="24"></Path>
+                    </Grid>
+                </Viewbox>
+            </Button>
+            <Button Margin="0,8,0,0" HorizontalAlignment="Center" Name="BtnCar" Click="BtnCar_Click" Template="{DynamicResource IconButton}" Padding="0">
+                <Viewbox Stretch="Fill" Height="24" Width="24">
+                    <Grid>
+                        <Path Fill="#13170E" Data="M22 13.5V21C22 21.5523 21.5523 22 21 22H20C19.4477 22 19 21.5523 19 21V20H5V21C5 21.5523 4.55228 22 4 22H3C2.44772 22 2 21.5523 2 21V13.5L0.757464 13.1894C0.312297 13.0781 0 12.6781 0 12.2192V11.5C0 11.2239 0.223858 11 0.5 11H2.375L4.51334 5.29775C4.80607 4.51715 5.55231 4 6.386 4H17.614C18.4477 4 19.1939 4.51715 19.4867 5.29775L21.625 11H23.5C23.7761 11 24 11.2239 24 11.5V12.2192C24 12.6781 23.6877 13.0781 23.2425 13.1894L22 13.5ZM4 15V17C4 17.5523 4.44772 18 5 18H8.24496C8.3272 18 8.40818 17.9797 8.4807 17.9409C8.72418 17.8107 8.81602 17.5078 8.68582 17.2643L8.68588 17.2643C7.87868 15.7548 6.31672 15 4 15ZM20 15C17.6833 15 16.1213 15.7548 15.3141 17.2643L15.3142 17.2643C15.184 17.5078 15.2758 17.8107 15.5193 17.9409C15.5918 17.9797 15.6728 18 15.755 18H19C19.5523 18 20 17.5523 20 17V15ZM6 6L4.43874 10.6838C4.40475 10.7857 4.38743 10.8925 4.38743 11C4.38743 11.5523 4.83514 12 5.38743 12H18.6126C18.7201 12 18.8268 11.9827 18.9288 11.9487C19.4527 11.774 19.7359 11.2077 19.5613 10.6838L18 6H6Z" Width="24" Height="24"/>
+                    </Grid>
+                </Viewbox>
+            </Button>
+            <Button Margin="0,8,0,0" HorizontalAlignment="Center" Name ="BtnMotorcycle" Click="BtnMotorcycle_Click" Template="{DynamicResource IconButton}" Padding="0">
+                <Viewbox Stretch="Fill" Height="24" Width="24">
+                    <Grid>
+                        <Path Fill="#13170E" Data="M8.36547 10L11.2 8H14.6915L13.5996 5H11V3H15L16.0919 6H20V9H17.1838L18.6405 13.0022C21.0608 13.0764 23 15.0617 23 17.5C23 19.9853 20.9853 22 18.5 22C16.0147 22 14 19.9853 14 17.5C14 15.6722 15.0897 14.0989 16.6549 13.3944L15.4194 10H14.4718L12.89 15.87L9.96536 16.9389C9.98822 17.1227 10 17.31 10 17.5C10 19.9853 7.98528 22 5.5 22C3.01472 22 1 19.9853 1 17.5C1 15.5407 2.25221 13.8738 4 13.2561V12H2V10H8.36547ZM5.5 20C6.88071 20 8 18.8807 8 17.5C8 16.1193 6.88071 15 5.5 15C4.11929 15 3 16.1193 3 17.5C3 18.8807 4.11929 20 5.5 20ZM18.5 20C19.8807 20 21 18.8807 21 17.5C21 16.1193 19.8807 15 18.5 15C17.1193 15 16 16.1193 16 17.5C16 18.8807 17.1193 20 18.5 20Z" Width="24" Height="24"/>
+                    </Grid>
+                </Viewbox>
+            </Button>
+            <Button Margin="0,8,0,0" HorizontalAlignment="Center" Name="BtnVan" Click="BtnVan_Click" Template="{DynamicResource IconButton}" Padding="0">
+                <Viewbox Stretch="Fill" Height="24" Width="24">
+                    <Grid>
+                        <Path Fill="#13170E" Data="M17 8H20L23 12.0557V18H20.9646C20.7219 19.6961 19.2632 21 17.5 21C15.7368 21 14.2781 19.6961 14.0354 18H8.96456C8.72194 19.6961 7.26324 21 5.5 21C3.73676 21 2.27806 19.6961 2.03544 18H1V6C1 5.44772 1.44772 5 2 5H16C16.5523 5 17 5.44772 17 6V8ZM17 10V13H21V12.715L18.9917 10H17Z" Width="24" Height="24"/>
+                    </Grid>
+                </Viewbox>
+            </Button>
+            <Button Margin="0,8,0,0" HorizontalAlignment="Center" Name="Add" Click="Add_Click" Template="{DynamicResource IconButton}" Padding="0">
+                <Viewbox Stretch="Fill" Height="24" Width="24">
+                    <Grid>
+                        <Path Fill="#13170E" Data="M11 11V5H13V11H19V13H13V19H11V13H5V11H11Z" Width="24" Height="24"/>
+                    </Grid>
+                </Viewbox>
+            </Button>
         </StackPanel>
-        <Button VerticalAlignment="Bottom" Name="BtnProfile" HorizontalAlignment="Center" Margin="0,0,0,20" Click="BtnProfile_Click">Profil</Button>
+        <Button VerticalAlignment="Bottom" Name="BtnProfile" HorizontalAlignment="Center" Margin="0,0,0,20" Click="BtnProfile_Click" Template="{DynamicResource IconButton}" Padding="0">
+            <Viewbox Stretch="Fill" Height="24" Width="24">
+                <Grid>
+                    <Path Width="24" Height="24" Fill="#13170E" Data="M4 22C4 17.5817 7.58172 14 12 14C16.4183 14 20 17.5817 20 22H18C18 18.6863 15.3137 16 12 16C8.68629 16 6 18.6863 6 22H4ZM12 13C8.685 13 6 10.315 6 7C6 3.685 8.685 1 12 1C15.315 1 18 3.685 18 7C18 10.315 15.315 13 12 13ZM12 11C14.21 11 16 9.21 16 7C16 4.79 14.21 3 12 3C9.79 3 8 4.79 8 7C8 9.21 9.79 11 12 11Z"></Path>
+                </Grid>
+            </Viewbox>
+        </Button>
 
         <Frame Grid.Column="1" x:Name="_frame"/>
     </Grid>

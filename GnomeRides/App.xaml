@@ -32,6 +32,48 @@
                     </Trigger>
                 </ControlTemplate.Triggers>
             </ControlTemplate>
+            <SolidColorBrush x:Key="IconButton.MouseOver.Background" Color="#CCA3BF88"/>
+            <SolidColorBrush x:Key="IconButton.Pressed.Background" Color="#EEA3BF88"/>
+            <ControlTemplate x:Key="IconButton" TargetType="{x:Type ButtonBase}">
+                <Border x:Name="border" CornerRadius="6" Height="44" Width="44" Padding="0" Background="#FFCDD4C4" BorderThickness="0" SnapsToDevicePixels="true">
+                    <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                </Border>
+                <ControlTemplate.Triggers>
+                    <Trigger Property="Button.IsDefaulted" Value="true">
+                        <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                    </Trigger>
+                    <Trigger Property="IsMouseOver" Value="true">
+                        <Setter Property="Background" TargetName="border" Value="{StaticResource IconButton.MouseOver.Background}"/>
+                    </Trigger>
+                    <Trigger Property="IsPressed" Value="true">
+                        <Setter Property="Background" TargetName="border" Value="{StaticResource IconButton.Pressed.Background}"/>
+                    </Trigger>
+                    <Trigger Property="IsEnabled" Value="false">
+                        <Setter Property="Opacity"  Value="50" />
+                    </Trigger>
+                </ControlTemplate.Triggers>
+            </ControlTemplate>
+            <SolidColorBrush x:Key="SecondaryButton.MouseOver.Background" Color="#CCA3BF88"/>
+            <SolidColorBrush x:Key="SecondaryButton.Pressed.Background" Color="#EEA3BF88"/>
+            <ControlTemplate x:Key="SecondaryButton" TargetType="{x:Type ButtonBase}">
+                <Border x:Name="border" CornerRadius="6" Height="40" Background="#FFCDD4C4" BorderThickness="0" SnapsToDevicePixels="true">
+                    <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                </Border>
+                <ControlTemplate.Triggers>
+                    <Trigger Property="Button.IsDefaulted" Value="true">
+                        <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                    </Trigger>
+                    <Trigger Property="IsMouseOver" Value="true">
+                        <Setter Property="Background" TargetName="border" Value="{StaticResource IconButton.MouseOver.Background}"/>
+                    </Trigger>
+                    <Trigger Property="IsPressed" Value="true">
+                        <Setter Property="Background" TargetName="border" Value="{StaticResource IconButton.Pressed.Background}"/>
+                    </Trigger>
+                    <Trigger Property="IsEnabled" Value="false">
+                        <Setter Property="Opacity"  Value="50" />
+                    </Trigger>
+                </ControlTemplate.Triggers>
+            </ControlTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
