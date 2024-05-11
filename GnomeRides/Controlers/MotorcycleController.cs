@@ -95,7 +95,7 @@ namespace GnomeRides.Controlers
                     reader.GetUInt16(9)
                 );
             }
-            catch ()
+            catch (Exception ex)
             {
                 return (motorcycle, "Ett oväntat fel uppstod");
             }
