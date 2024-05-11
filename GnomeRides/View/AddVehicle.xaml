@@ -20,9 +20,9 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
-                <Button HorizontalAlignment="Stretch" Name="BtnCar" Click="BtnCar_Click">Bil</Button>
-                <Button HorizontalAlignment="Stretch" Name="BtnBike"  Grid.Column="2" Click="BtnBike_Click">Motorcyckel</Button>
-                <Button HorizontalAlignment="Stretch" Name="BtnVan" Grid.Column="4" Click="BtnVan_Click">Lastbil</Button>
+                <Button HorizontalAlignment="Stretch" Name="BtnCar" Click="BtnCar_Click" Template="{DynamicResource SecondaryButton}">Bil</Button>
+                <Button HorizontalAlignment="Stretch" Name="BtnBike"  Grid.Column="2" Click="BtnBike_Click" Template="{DynamicResource SecondaryButton}">Motorcyckel</Button>
+                <Button HorizontalAlignment="Stretch" Name="BtnVan" Grid.Column="4" Click="BtnVan_Click" Template="{DynamicResource SecondaryButton}">Lastbil</Button>
             </Grid>
             <Frame Name="InnerFrame" Margin="0,24,0,0" />
         </StackPanel>

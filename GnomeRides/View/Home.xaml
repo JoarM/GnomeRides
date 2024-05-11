@@ -22,7 +22,7 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
-                <ui:Button VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Column="0" Name="BtnCar" Click="BtnCar_Click">
+                <Button VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Column="0" Name="BtnCar" Click="BtnCar_Click">
                     <StackPanel>
                         <Viewbox Stretch="Fill" Height="72" Width="72">
                             <Grid>
@@ -31,8 +31,8 @@
                         </Viewbox>
                         <Label HorizontalAlignment="Center" Margin="0,4,0,0" FontSize="18" FontWeight="Medium" Foreground="#13170E">Bilar</Label>
                     </StackPanel>
-                </ui:Button>
-                <ui:Button VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Column="2">
+                </Button>
+                <Button VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Column="2">
                     <StackPanel>
                         <Viewbox Stretch="Fill" Height="72" Width="72">
                             <Grid>
@@ -41,8 +41,8 @@
                         </Viewbox>
                         <Label HorizontalAlignment="Center" Margin="0,4,0,0" FontSize="18" FontWeight="Medium" Foreground="#13170E">Motorcycklar</Label>
                     </StackPanel>
-                </ui:Button>
-                <ui:Button VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Column="4">
+                </Button>
+                <Button VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Column="4">
                     <StackPanel>
                         <Viewbox Stretch="Fill" Height="72" Width="72">
                             <Grid>
@@ -51,7 +51,7 @@
                         </Viewbox>
                         <Label HorizontalAlignment="Center" Margin="0,4,0,0" FontSize="18" FontWeight="Medium" Foreground="#13170E">Lastbilar</Label>
                     </StackPanel>
-                </ui:Button>
+                </Button>
             </Grid>
             <TextBlock Margin="0,32,0,0" FontSize="32" Foreground="#13170E" FontWeight="Bold">Bilar</TextBlock>
             <components:AutoGrid x:Name="autoGrid" Margin="0,16,0,0" />
