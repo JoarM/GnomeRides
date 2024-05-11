@@ -22,7 +22,7 @@ namespace GnomeRides.View
     /// </summary>
     public partial class CarPage : Page
     {
-        private Car? car;
+        private readonly Car? car;
         public CarPage(string reg_nr)
         {
             InitializeComponent();
