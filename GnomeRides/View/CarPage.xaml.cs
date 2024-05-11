@@ -49,23 +49,28 @@ namespace GnomeRides.View
                 TxtBlkModel.Text = $"{car.Manufacturer} {car.Model}";
                 InfoGrid.AddChild(new TextBlock()
                 {
-                    Text = $"Säten: {car.Seats}"
+                    Text = $"Säten: {car.Seats}",
+                    FontWeight = FontWeights.Medium,
                 });
                 InfoGrid.AddChild(new TextBlock()
                 {
-                    Text = $"Miltal: {car.Mileage} mil"
+                    Text = $"Miltal: {car.Mileage} mil",
+                    FontWeight = FontWeights.Medium,
                 });
                 InfoGrid.AddChild(new TextBlock()
                 {
-                    Text = $"Hjul: {car.Wheels}"
+                    Text = $"Hjul: {car.Wheels}",
+                    FontWeight = FontWeights.Medium,
                 });
                 InfoGrid.AddChild(new TextBlock()
                 {
-                    Text = $"Drivmedel: {car.FuelType}"
+                    Text = $"Drivmedel: {car.FuelType}",
+                    FontWeight = FontWeights.Medium,
                 });
                 InfoGrid.AddChild(new TextBlock()
                 {
-                    Text = $"Utsläpp: {car.Co2} g/km"
+                    Text = $"Utsläpp: {car.Co2} g/km",
+                    FontWeight = FontWeights.Medium,
                 });
             }
         }
