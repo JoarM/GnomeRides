@@ -22,13 +22,14 @@ namespace GnomeRides.View
     /// </summary>
     public partial class CarPage : Page
     {
-        private Car car;
+        private Car? car;
         public CarPage(string reg_nr)
         {
             InitializeComponent();
             (Car?, string?) res = CarController.GetCarByRegNr(reg_nr);
             Car? car = res.Item1;
             string? error = res.Item2;
+
             this.car = car;
             BitmapImage bitmap = new BitmapImage();
             bitmap.BeginInit();
@@ -36,16 +37,55 @@ namespace GnomeRides.View
             bitmap.EndInit();
 
             ImgCar.Source = bitmap;
+            this.Loaded += (s, e) =>
+            {
+                if (car == null)
+                {
+                    NavigationService.Navigate(new Error(error));
+                }
+            };
+            if (car != null)
+            {
+                TxtBlkModel.Text = $"{car.Manufacturer} {car.Model}";
+                InfoGrid.AddChild(new TextBlock()
+                {
+                    Text = $"Säten: {car.Seats}"
+                });
+                InfoGrid.AddChild(new TextBlock()
+                {
+                    Text = $"Miltal: {car.Mileage} mil"
+                });
+                InfoGrid.AddChild(new TextBlock()
+                {
+                    Text = $"Hjul: {car.Wheels}"
+                });
+                InfoGrid.AddChild(new TextBlock()
+                {
+                    Text = $"Drivmedel: {car.FuelType}"
+                });
+                InfoGrid.AddChild(new TextBlock()
+                {
+                    Text = $"Utsläpp: {car.Co2} g/km"
+                });
+            }
         }
 
         private void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (car == null)
+            {
+                return;
+            }
             TxtBlkPrice.Text = $"Pris: {Calendar.SelectedDates.Count * car.DailyRate / 100} kr";
         }
 
         private void BtnBook_Click(object sender, RoutedEventArgs e)
         {
-            string? error = car.LoanCar(DateOnly.FromDateTime(Calendar.SelectedDates.First()), DateOnly.FromDateTime(Calendar.SelectedDates.Last()));
+            if (car == null)
+            {
+                return;
+            }
+            string? error = car.LoanCar(DateOnly.FromDateTime(Calendar.SelectedDates.First() > Calendar.SelectedDates.Last() ? Calendar.SelectedDates.Last() : Calendar.SelectedDates.First()), DateOnly.FromDateTime(Calendar.SelectedDates.First() < Calendar.SelectedDates.Last() ? Calendar.SelectedDates.Last() : Calendar.SelectedDates.First()));
             if (error != null)
             {
 

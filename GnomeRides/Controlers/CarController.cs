@@ -96,7 +96,7 @@ namespace GnomeRides.Controlers
                     reader.GetUInt16(9)
                 );
             }
-            catch (Exception ex)
+            catch
             {
                 return (car, "Ett oväntat fel uppstod");
             }
@@ -140,7 +140,7 @@ namespace GnomeRides.Controlers
                 cmd.Parameters.AddWithValue("@owner_id", User.CurrentUser.Id);
                 cmd.Parameters.AddWithValue("@co2", co2);
                 cmd.ExecuteNonQuery();
-            } catch (Exception ex)
+            } catch
             {
                 return "Ett oväntat fel uppstod";
             }

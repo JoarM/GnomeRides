@@ -45,7 +45,7 @@ namespace GnomeRides.View
             uint.Parse(TbxMileage.Text),
             uint.Parse(TbxWheels.Text),
             TbxModel.Text,
-            Constants.VehicleManufacturers.Find(kvp => kvp.Value == CbxFuelType.SelectedItem.ToString()).Key,
+            Constants.FuelTypes.Find(kvp => kvp.Value == CbxFuelType.SelectedItem.ToString()).Key,
             uint.Parse(TbxDailyRate.Text) * 100,
             uint.Parse(TbxCo2.Text)
             );
