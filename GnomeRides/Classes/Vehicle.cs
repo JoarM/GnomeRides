@@ -195,7 +195,7 @@ namespace GnomeRides.Classes
         /// <param name="StartDate"></param>
         /// <param name="EndDate"></param>
         /// <returns>An error message on error and null on success</returns>
-        public string? LoanMotorCycle(DateOnly StartDate, DateOnly EndDate)
+        public string? LoanMotorcycle(DateOnly StartDate, DateOnly EndDate)
         {
             int? error = LoanVehicle(StartDate, EndDate);
             return error switch
