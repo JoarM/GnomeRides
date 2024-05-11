@@ -15,7 +15,7 @@
                 <RowDefinition Height="4*" />
             </Grid.RowDefinitions>
 
-            <Image Name="ImgCover" HorizontalAlignment="Center" Stretch="Uniform" />
+            <Image Name="ImgCover" HorizontalAlignment="Center" VerticalAlignment="Stretch" Stretch="Uniform" />
             <TextBlock Name="TxtBlkName" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" />
             <TextBlock Name="TxtBlkPrice" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" />
             <ui:Button Grid.Row="2" HorizontalAlignment="Right">Boka nu</ui:Button>

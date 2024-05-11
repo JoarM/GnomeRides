@@ -15,7 +15,7 @@ namespace GnomeRides.Components
             InitializeComponent();
             BitmapImage bitmap = new BitmapImage();
             bitmap.BeginInit();
-            bitmap.UriSource = new Uri("https://unifleet.se/wp-content/uploads/2020/10/Volvo-V60-Recharge-Vapour-Grey.png");
+            bitmap.UriSource = new Uri("https://images5.1000ps.net/images_bikekat/2024/7-BMW/9949-F_900_XR/013-638239841766558822-bmw-f-900-xr.jpg?width=520&height=380&mode=crop");
             bitmap.EndInit();
 
             ImgCover.Source = bitmap;
