@@ -73,9 +73,10 @@ namespace GnomeRides.Controlers
                     "vehicle.daily_rate, " +
                     "vehicle.owner_id, " +
                     "motorcycle.cc " +
-                    "FROM vehicle WHERE vehicle.reg_nr = @reg_nr " +
+                    "FROM vehicle " +
                     "INNER JOIN motorcycle " +
-                    "ON vehicle.reg_nr = motorcycle.reg_nr;";
+                    "ON vehicle.reg_nr = motorcycle.reg_nr " +
+                    "WHERE vehicle.reg_nr = @reg_nr;";
                 cmd.Parameters.AddWithValue("@reg_nr", regNr);
                 using MySqlDataReader reader = cmd.ExecuteReader();
                 if (!reader.Read())
