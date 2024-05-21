@@ -18,92 +18,84 @@ using System.Windows.Shapes;
 namespace GnomeRides.View
 {
     /// <summary>
-    /// Interaction logic for CarPage.xaml
+    /// Interaction logic for VanPage.xaml
     /// </summary>
-    public partial class CarPage : Page
+    public partial class VanPage : Page
     {
-        private readonly Car? car;
-        public CarPage(string reg_nr)
+        private readonly Van? van;
+        public VanPage(string reg_nr)
         {
             InitializeComponent();
-            (Car?, string?) res = CarController.GetCarByRegNr(reg_nr);
-            Car? car = res.Item1;
+            (Van?, string?) res = VanController.GetVanByRegNr(reg_nr);
+            Van? van = res.Item1;
             string? error = res.Item2;
 
-            this.car = car;
+            this.van = van;
             BitmapImage bitmap = new BitmapImage();
             bitmap.BeginInit();
             bitmap.UriSource = new Uri("https://unifleet.se/wp-content/uploads/2020/10/Volvo-V60-Recharge-Vapour-Grey.png");
             bitmap.EndInit();
 
-            ImgCar.Source = bitmap;
+            ImgVan.Source = bitmap;
             this.Loaded += (s, e) =>
             {
-                if (car == null)
+                if (van == null)
                 {
                     NavigationService.Navigate(new Error(error));
                 }
             };
-            if (car != null)
+            if (van != null)
             {
-                TxtBlkModel.Text = $"{car.Manufacturer} {car.Model}";
+                TxtBlkModel.Text = $"{van.Manufacturer} {van.Model}";
                 InfoGrid.AddChild(new TextBlock()
                 {
-                    Text = $"Säten: {car.Seats}",
+                    Text = $"Säten: {van.Seats}",
                     FontWeight = FontWeights.Medium,
                 });
                 InfoGrid.AddChild(new TextBlock()
                 {
-                    Text = $"Miltal: {car.Mileage} mil",
+                    Text = $"Miltal: {  van.Mileage} mil",
                     FontWeight = FontWeights.Medium,
                 });
                 InfoGrid.AddChild(new TextBlock()
                 {
-                    Text = $"Hjul: {car.Wheels}",
+                    Text = $"Hjul: {van.Wheels}",
                     FontWeight = FontWeights.Medium,
                 });
                 InfoGrid.AddChild(new TextBlock()
                 {
-                    Text = $"Drivmedel: {car.FuelType}",
+                    Text = $"Drivmedel: {van.FuelType}",
                     FontWeight = FontWeights.Medium,
                 });
                 InfoGrid.AddChild(new TextBlock()
                 {
-                    Text = $"Utsläpp: {car.Co2} g/km",
+                    Text = $"MaxVikt: { van.MaxWeight} CC",
                     FontWeight = FontWeights.Medium,
                 });
             }
+
         }
 
         private void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (car == null)
+            if (van == null)
             {
                 return;
             }
-            TxtBlkPrice.Text = $"Pris: {Calendar.SelectedDates.Count * car.DailyRate / 100} kr";
+            TxtBlkPrice.Text = $"Pris: {Calendar.SelectedDates.Count * van.DailyRate / 100} kr";
         }
 
         private void BtnBook_Click(object sender, RoutedEventArgs e)
         {
-            if (car == null)
+            if (van == null)
             {
-                TxtBlkBookinMessage.Visibility = Visibility.Collapsed;
-                TxtBlkBookinError.Visibility = Visibility.Visible;
-                TxtBlkBookinError.Text = "Ingen bil";
                 return;
             }
-            string? error = car.LoanCar(DateOnly.FromDateTime(Calendar.SelectedDates.First() > Calendar.SelectedDates.Last() ? Calendar.SelectedDates.Last() : Calendar.SelectedDates.First()), DateOnly.FromDateTime(Calendar.SelectedDates.First() < Calendar.SelectedDates.Last() ? Calendar.SelectedDates.Last() : Calendar.SelectedDates.First()));
+            string? error = van.LoanVan(DateOnly.FromDateTime(Calendar.SelectedDates.First() > Calendar.SelectedDates.Last() ? Calendar.SelectedDates.Last() : Calendar.SelectedDates.First()), DateOnly.FromDateTime(Calendar.SelectedDates.First() < Calendar.SelectedDates.Last() ? Calendar.SelectedDates.Last() : Calendar.SelectedDates.First()));
             if (error != null)
             {
-                TxtBlkBookinMessage.Visibility = Visibility.Collapsed;
-                TxtBlkBookinError.Visibility = Visibility.Visible;
-                TxtBlkBookinError.Text = error;
-                return;
+
             }
-            TxtBlkBookinMessage.Visibility = Visibility.Visible;
-            TxtBlkBookinError.Visibility = Visibility.Collapsed;
-            TxtBlkBookinMessage.Text = "Bil bokad";
         }
     }
 }

@@ -18,58 +18,58 @@ using System.Windows.Shapes;
 namespace GnomeRides.View
 {
     /// <summary>
-    /// Interaction logic for CarPage.xaml
+    /// Interaction logic for MotorcyclePage.xaml
     /// </summary>
-    public partial class CarPage : Page
+    public partial class MotorcyclePage : Page
     {
-        private readonly Car? car;
-        public CarPage(string reg_nr)
+        private readonly Motorcycle? motorcycle;
+        public MotorcyclePage(string reg_nr)
         {
             InitializeComponent();
-            (Car?, string?) res = CarController.GetCarByRegNr(reg_nr);
-            Car? car = res.Item1;
+            (Motorcycle?, string?) res = MotorcycleController.GetMotorcycleByRegNr(reg_nr);
+            Motorcycle? motorcycle = res.Item1;
             string? error = res.Item2;
 
-            this.car = car;
+            this.motorcycle = motorcycle;
             BitmapImage bitmap = new BitmapImage();
             bitmap.BeginInit();
             bitmap.UriSource = new Uri("https://unifleet.se/wp-content/uploads/2020/10/Volvo-V60-Recharge-Vapour-Grey.png");
             bitmap.EndInit();
 
-            ImgCar.Source = bitmap;
+            ImgMotorcycle.Source = bitmap;
             this.Loaded += (s, e) =>
             {
-                if (car == null)
+                if (motorcycle == null)
                 {
                     NavigationService.Navigate(new Error(error));
                 }
             };
-            if (car != null)
+            if (motorcycle != null)
             {
-                TxtBlkModel.Text = $"{car.Manufacturer} {car.Model}";
+                TxtBlkModel.Text = $"{motorcycle.Manufacturer} {motorcycle.Model}";
                 InfoGrid.AddChild(new TextBlock()
                 {
-                    Text = $"Säten: {car.Seats}",
+                    Text = $"Säten: {motorcycle.Seats}",
                     FontWeight = FontWeights.Medium,
                 });
                 InfoGrid.AddChild(new TextBlock()
                 {
-                    Text = $"Miltal: {car.Mileage} mil",
+                    Text = $"Miltal: {motorcycle.Mileage} mil",
                     FontWeight = FontWeights.Medium,
                 });
                 InfoGrid.AddChild(new TextBlock()
                 {
-                    Text = $"Hjul: {car.Wheels}",
+                    Text = $"Hjul: {motorcycle.Wheels}",
                     FontWeight = FontWeights.Medium,
                 });
                 InfoGrid.AddChild(new TextBlock()
                 {
-                    Text = $"Drivmedel: {car.FuelType}",
+                    Text = $"Drivmedel: {motorcycle.FuelType}",
                     FontWeight = FontWeights.Medium,
                 });
                 InfoGrid.AddChild(new TextBlock()
                 {
-                    Text = $"Utsläpp: {car.Co2} g/km",
+                    Text = $"Cylinder: {motorcycle.CC} CC",
                     FontWeight = FontWeights.Medium,
                 });
             }
@@ -77,33 +77,24 @@ namespace GnomeRides.View
 
         private void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (car == null)
+            if (motorcycle == null)
             {
                 return;
             }
-            TxtBlkPrice.Text = $"Pris: {Calendar.SelectedDates.Count * car.DailyRate / 100} kr";
+            TxtBlkPrice.Text = $"Pris: {Calendar.SelectedDates.Count * motorcycle.DailyRate / 100} kr";
         }
 
         private void BtnBook_Click(object sender, RoutedEventArgs e)
         {
-            if (car == null)
+            if (motorcycle == null)
             {
-                TxtBlkBookinMessage.Visibility = Visibility.Collapsed;
-                TxtBlkBookinError.Visibility = Visibility.Visible;
-                TxtBlkBookinError.Text = "Ingen bil";
                 return;
             }
-            string? error = car.LoanCar(DateOnly.FromDateTime(Calendar.SelectedDates.First() > Calendar.SelectedDates.Last() ? Calendar.SelectedDates.Last() : Calendar.SelectedDates.First()), DateOnly.FromDateTime(Calendar.SelectedDates.First() < Calendar.SelectedDates.Last() ? Calendar.SelectedDates.Last() : Calendar.SelectedDates.First()));
+            string? error = motorcycle.LoanMotorcycle(DateOnly.FromDateTime(Calendar.SelectedDates.First() > Calendar.SelectedDates.Last() ? Calendar.SelectedDates.Last() : Calendar.SelectedDates.First()), DateOnly.FromDateTime(Calendar.SelectedDates.First() < Calendar.SelectedDates.Last() ? Calendar.SelectedDates.Last() : Calendar.SelectedDates.First()));
             if (error != null)
             {
-                TxtBlkBookinMessage.Visibility = Visibility.Collapsed;
-                TxtBlkBookinError.Visibility = Visibility.Visible;
-                TxtBlkBookinError.Text = error;
-                return;
+
             }
-            TxtBlkBookinMessage.Visibility = Visibility.Visible;
-            TxtBlkBookinError.Visibility = Visibility.Collapsed;
-            TxtBlkBookinMessage.Text = "Bil bokad";
         }
     }
 }

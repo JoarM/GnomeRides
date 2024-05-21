@@ -1,4 +1,4 @@
-﻿<Page x:Class="GnomeRides.View.CarPage"
+﻿<Page x:Class="GnomeRides.View.MotorcyclePage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -7,7 +7,7 @@
       xmlns:components="clr-namespace:GnomeRides.Components"
       mc:Ignorable="d" 
       d:DesignHeight="1024" d:DesignWidth="1440"
-      Title="CarPage">
+      Title="MotorcyclePage">
 
     <Grid Margin="24" MaxWidth="1024">
         <Grid.ColumnDefinitions>
@@ -18,7 +18,7 @@
 
         <StackPanel Grid.Column="0">
             <Border CornerRadius="16" BorderBrush="#777" BorderThickness="1">
-                <Image Height="300" Margin="24" x:Name="ImgCar" />
+                <Image Height="300" Margin="24" x:Name="ImgMotorcycle" />
             </Border>
             <TextBlock x:Name="TxtBlkModel" FontSize="24" FontWeight="Bold"></TextBlock>
             <components:AutoGrid x:Name="InfoGrid" Margin="0,16,0,0" />
@@ -27,9 +27,7 @@
         <StackPanel Grid.Column="2">
             <Calendar x:Name="Calendar" SelectionMode="SingleRange" SelectedDatesChanged="Calendar_SelectedDatesChanged" />
             <TextBlock x:Name="TxtBlkPrice" Margin="0,8,0,0">Pris: välj datum för att se pris</TextBlock>
-            <Button Grid.Row="2" Margin="0,12,0,0" Template="{DynamicResource DefaultButton}" HorizontalAlignment="Stretch" x:Name="BtnBook" Click="BtnBook_Click">Boka bil</Button>
-            <TextBlock x:Name="TxtBlkBookinError" Visibility="Collapsed" Foreground="#D64E30"></TextBlock>
-            <TextBlock x:Name="TxtBlkBookinMessage" Visibility="Collapsed" Foreground="#8AAD59"></TextBlock>
+            <Button Grid.Row="2" Margin="0,12,0,0" Template="{DynamicResource DefaultButton}" HorizontalAlignment="Stretch" x:Name="BtnBook" Click="BtnBook_Click">Boka motorcykel</Button>
         </StackPanel>
     </Grid>
 </Page>
