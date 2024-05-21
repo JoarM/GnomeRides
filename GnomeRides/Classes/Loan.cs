@@ -3,7 +3,7 @@ using MySql.Data.MySqlClient;
 
 namespace GnomeRides.Classes
 {
-    internal class Loan
+    public class Loan
     {
         private readonly DateOnly _start_date;
         private readonly DateOnly _end_date;

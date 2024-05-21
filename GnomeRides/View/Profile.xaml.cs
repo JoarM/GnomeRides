@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using GnomeRides.Components;
 
 namespace GnomeRides.View
 {
@@ -26,7 +27,12 @@ namespace GnomeRides.View
             InitializeComponent();
             TxtBlkName.Text = User.CurrentUser.Name;
             TxtBlkEmail.Text = User.CurrentUser.Email;
-            
+
+            (List<(Vehicle, Loan)>, string?) loansRes = User.CurrentUser.GetLoans();
+            foreach (var loan in loansRes.Item1) 
+            {
+                BookingGrid.AddChild(new LoanVehicle(loan.Item1, loan.Item2));
+            }
         }
     }
 }

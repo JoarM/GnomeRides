@@ -3,7 +3,7 @@ using MySql.Data.MySqlClient;
 
 namespace GnomeRides.Classes
 {
-    public abstract class Vehicle
+    public class Vehicle
     {
         protected string _reg_nr;
         protected uint _seats;
@@ -23,6 +23,34 @@ namespace GnomeRides.Classes
         public string Model { get { return _model; } }
         public string FuelType { get { return _fuel_type; } }
         public uint DailyRate { get { return _daily_rate; } }
+
+        /// <summary>
+        /// Absolutley dont use this, just here to stop compiler from crying
+        /// </summary>
+        public Vehicle() { }
+
+        public Vehicle(string reg_nr,
+            uint seats,
+            string manufacturer,
+            uint mileage,
+            uint wheels,
+            string model,
+            string fuel_type,
+            uint daily_rate,
+            string owner_id
+        )
+        {
+            _reg_nr = reg_nr;
+            _seats = seats;
+            _manufacturer = manufacturer;
+            _mileage = mileage;
+            _wheels = wheels;
+            _model = model;
+            _fuel_type = fuel_type;
+            _daily_rate = daily_rate;
+            _owner_id = owner_id;
+        }
+
         /// <summary>
         /// Deletes vehicle
         /// </summary>

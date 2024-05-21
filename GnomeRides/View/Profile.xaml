@@ -14,6 +14,6 @@
         <TextBlock FontSize="14" FontWeight="Medium" Margin="0,8,0,0" x:Name="TxtBlkEmail"></TextBlock>
         <Border Height="1" BorderThickness="1" Margin="0,24" BorderBrush="#777" />
         <TextBlock FontSize="20" FontWeight="Bold">Dina bokningar</TextBlock>
-        <components:AutoGrid Margin="0,16,0,0" x:Name="AutoGrid" />
+        <components:AutoGrid Margin="0,16,0,0" x:Name="BookingGrid" />
     </StackPanel>
 </Page>

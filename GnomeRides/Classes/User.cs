@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 
 namespace GnomeRides.Classes
 {
-    internal class User
+    public class User
     {
         private readonly string _id;
         private readonly string _name;
@@ -214,6 +214,100 @@ namespace GnomeRides.Classes
             }
             _currentUser = null;
             return null;
+        }
+
+        public (List<Vehicle>, string?) GetVehicles()
+        {
+            List<Vehicle> vehicles = new();
+            try
+            {
+                using MySqlCommand cmd = MySqlAdapter.Connection.CreateCommand();
+                cmd.CommandText = "SELECT vehicle.reg_nr, " +
+                    "vehicle.seats, " +
+                    "vehicle.manufacturer, " +
+                    "vehicle.mileage, vehicle.wheels, " +
+                    "vehicle.model, " +
+                    "vehicle.fuel_type, " +
+                    "vehicle.daily_rate, " +
+                    "vehicle.owner_id, FROM vehicle " +
+                    "WHERE owner_id = @owner_id;";
+                cmd.Parameters.AddWithValue("@owner_id", this._id);
+                using MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Vehicle vehicle = new(
+                        reader.GetString(0),
+                        reader.GetUInt16(1),
+                        Constants.VehicleManufacturers.Find(kvp => kvp.Key == reader.GetUInt16(2)).Value,
+                        reader.GetUInt32(3),
+                        reader.GetUInt16(4),
+                        reader.GetString(5),
+                        Constants.FuelTypes.Find(kvp => kvp.Key == reader.GetUInt16(6)).Value,
+                        reader.GetUInt32(7),
+                        reader.GetString(8)
+                    );
+                    vehicles.Add(vehicle);
+                }
+            }
+            catch
+            {
+                return (vehicles, "Ett oväntat fel uppstod");
+            }
+            return (vehicles, null);
+        }
+
+        public (List<(Vehicle, Loan)> , string?) GetLoans()
+        {
+            List<(Vehicle, Loan)> vehicles = new();
+            try
+            {
+                using MySqlCommand cmd = MySqlAdapter.Connection.CreateCommand();
+                cmd.CommandText = "SELECT vehicle.reg_nr, " +
+                    "vehicle.seats, " +
+                    "vehicle.manufacturer, " +
+                    "vehicle.mileage, vehicle.wheels, " +
+                    "vehicle.model, " +
+                    "vehicle.fuel_type, " +
+                    "vehicle.daily_rate, " +
+                    "vehicle.owner_id, " +
+                    "loan.start_date, " +
+                    "loan.end_date, " +
+                    "loan.loan_owner_id, " +
+                    "loan.price " +
+                    "FROM loan " +
+                    "INNER JOIN vehicle " +
+                    "ON loan.reg_nr = vehicle.reg_nr " +
+                    "WHERE loan.loan_owner_id = @owner_id;";
+                cmd.Parameters.AddWithValue("@owner_id", this._id);
+                using MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Vehicle vehicle = new(
+                        reader.GetString(0),
+                        reader.GetUInt16(1),
+                        Constants.VehicleManufacturers.Find(kvp => kvp.Key == reader.GetUInt16(2)).Value,
+                        reader.GetUInt32(3),
+                        reader.GetUInt16(4),
+                        reader.GetString(5),
+                        Constants.FuelTypes.Find(kvp => kvp.Key == reader.GetUInt16(6)).Value,
+                        reader.GetUInt32(7),
+                        reader.GetString(8)
+                    );
+                    Loan loan = new(
+                        DateOnly.FromDateTime(reader.GetDateTime(9)),
+                        DateOnly.FromDateTime(reader.GetDateTime(10)),
+                        reader.GetString(11),
+                        reader.GetString(0),
+                        reader.GetInt32(12)
+                    );
+                    vehicles.Add((vehicle, loan));
+                }
+            }
+            catch (Exception ex)
+            {
+                return (vehicles, "Ett oväntat fel uppstod");
+            }
+            return (vehicles, null);
         }
     }
 }
