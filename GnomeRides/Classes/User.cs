@@ -229,7 +229,7 @@ namespace GnomeRides.Classes
                     "vehicle.model, " +
                     "vehicle.fuel_type, " +
                     "vehicle.daily_rate, " +
-                    "vehicle.owner_id, FROM vehicle " +
+                    "vehicle.owner_id FROM vehicle " +
                     "WHERE owner_id = @owner_id;";
                 cmd.Parameters.AddWithValue("@owner_id", this._id);
                 using MySqlDataReader reader = cmd.ExecuteReader();

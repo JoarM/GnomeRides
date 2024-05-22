@@ -60,10 +60,10 @@ namespace GnomeRides.Classes
             try
             {
                 using MySqlCommand cmd = MySqlAdapter.Connection.CreateCommand();
-                cmd.CommandText = "DELETE vehicle WHERE reg_nr = @reg_nr;";
+                cmd.CommandText = "DELETE FROM vehicle WHERE reg_nr = @reg_nr;";
                 cmd.Parameters.AddWithValue("@reg_nr", _reg_nr);
                 cmd.ExecuteNonQuery();
-            } catch
+            } catch (Exception e)
             {
                 return "An unexpected error occured";
             }

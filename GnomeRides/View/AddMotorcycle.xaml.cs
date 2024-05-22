@@ -48,10 +48,7 @@ namespace GnomeRides.View
             uint.Parse(TbxDailyRate.Text) * 100,
             uint.Parse(TbxCC.Text)
             );
-            if (error != null)
-            {
-                Console.Write(error);
-            }
+            this.NavigationService.Navigate(new Motorcycles());
         }
     }
 }

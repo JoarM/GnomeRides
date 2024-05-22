@@ -15,5 +15,7 @@
         <Border Height="1" BorderThickness="1" Margin="0,24" BorderBrush="#777" />
         <TextBlock FontSize="20" FontWeight="Bold">Dina bokningar</TextBlock>
         <components:AutoGrid Margin="0,16,0,0" x:Name="BookingGrid" />
+        <TextBlock FontSize="20" FontWeight="Bold" Margin="0,20,0,0">Dina fordon</TextBlock>
+        <components:AutoGrid Margin="0,16,0,0" x:Name="VehicleGrid" />
     </StackPanel>
 </Page>

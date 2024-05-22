@@ -29,9 +29,15 @@ namespace GnomeRides.View
             TxtBlkEmail.Text = User.CurrentUser.Email;
 
             (List<(Vehicle, Loan)>, string?) loansRes = User.CurrentUser.GetLoans();
+            (List<Vehicle>, string?) vehicleRes = User.CurrentUser.GetVehicles();
             foreach (var loan in loansRes.Item1) 
             {
                 BookingGrid.AddChild(new LoanVehicle(loan.Item1, loan.Item2));
+            }
+
+            foreach (var vehicle in vehicleRes.Item1)
+            {
+                VehicleGrid.AddChild(new OwnedVehicle(vehicle));
             }
         }
     }
