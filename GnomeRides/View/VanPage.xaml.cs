@@ -94,8 +94,14 @@ namespace GnomeRides.View
             string? error = van.LoanVan(DateOnly.FromDateTime(Calendar.SelectedDates.First() > Calendar.SelectedDates.Last() ? Calendar.SelectedDates.Last() : Calendar.SelectedDates.First()), DateOnly.FromDateTime(Calendar.SelectedDates.First() < Calendar.SelectedDates.Last() ? Calendar.SelectedDates.Last() : Calendar.SelectedDates.First()));
             if (error != null)
             {
-
+                TxtBlkBookinMessage.Visibility = Visibility.Collapsed;
+                TxtBlkBookinError.Visibility = Visibility.Visible;
+                TxtBlkBookinError.Text = error;
+                return;
             }
+            TxtBlkBookinMessage.Visibility = Visibility.Visible;
+            TxtBlkBookinError.Visibility = Visibility.Collapsed;
+            TxtBlkBookinMessage.Text = "Bil bokad";
         }
     }
 }

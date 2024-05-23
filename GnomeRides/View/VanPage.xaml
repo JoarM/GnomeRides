@@ -28,6 +28,8 @@
             <Calendar x:Name="Calendar" SelectionMode="SingleRange" SelectedDatesChanged="Calendar_SelectedDatesChanged" />
             <TextBlock x:Name="TxtBlkPrice" Margin="0,8,0,0">Pris: välj datum för att se pris</TextBlock>
             <Button Grid.Row="2" Margin="0,12,0,0" Template="{DynamicResource DefaultButton}" HorizontalAlignment="Stretch" x:Name="BtnBook" Click="BtnBook_Click">Boka Lastbil</Button>
+            <TextBlock x:Name="TxtBlkBookinError" Visibility="Collapsed" Foreground="#D64E30"></TextBlock>
+            <TextBlock x:Name="TxtBlkBookinMessage" Visibility="Collapsed" Foreground="#8AAD59"></TextBlock>
         </StackPanel>
     </Grid>
 </Page>

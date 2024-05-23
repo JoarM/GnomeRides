@@ -50,7 +50,7 @@ namespace GnomeRides.View
 
         private void btnDeleteAccount_Click(object sender, RoutedEventArgs e)
         {
-            User.DeleteUser(tbxPassowrd.Text);
+            User.DeleteUser(tbxPassword.Password);
             WindowManager.OpenNewStandaloneWindow(new StartWindow());
         }
     }
