@@ -11,7 +11,7 @@
             <ColumnDefinition Width="80"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#CDD4C4">
+        <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#CDD4C4" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto">
             <Button HorizontalAlignment="Center" Name="BtnHome" Click="BtnHome_Click" Template="{DynamicResource IconButton}" Padding="0" Margin="0,24,0,0">
                 <Viewbox Stretch="Fill" Height="24" Width="24">
                     <Grid>
@@ -56,6 +56,8 @@
             </Viewbox>
         </Button>
 
-        <Frame Grid.Column="1" x:Name="_frame"/>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Column="1">
+            <Frame x:Name="_frame" />
+        </ScrollViewer>
     </Grid>
 </Window>

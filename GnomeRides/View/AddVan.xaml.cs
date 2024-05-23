@@ -55,10 +55,7 @@ namespace GnomeRides.View
             uint.Parse(TbxMaxWeight.Text),
             uint.Parse(TbxVolume.Text)
             );
-            if (error != null)
-            {
-                Console.Write(error);
-            }
+            this.NavigationService.Navigate(new Vans());
         }
     }
 }
