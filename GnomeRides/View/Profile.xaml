@@ -12,8 +12,11 @@
     <StackPanel Margin="24" MaxWidth="1024">
         <TextBlock FontSize="24" FontWeight="Bold" x:Name="TxtBlkName"></TextBlock>
         <TextBlock FontSize="14" FontWeight="Medium" Margin="0,8,0,0" x:Name="TxtBlkEmail"></TextBlock>
+        <Button Grid.Row="3" Template="{DynamicResource DestructiveButton}" Name="btnLogOut" HorizontalAlignment="Right" Click="btnLogOut_Click" Foreground="#fff">Logga Ut</Button>
+        <Button Grid.Row="3" Template="{DynamicResource DestructiveButton}" Name="btnDeleteAccount" HorizontalAlignment="Right" Click="btnDeleteAccount_Click" Margin="0,8,0,0" Foreground="#fff">Radera Konto</Button>
         <Border Height="1" BorderThickness="1" Margin="0,24" BorderBrush="#777" />
         <TextBlock FontSize="20" FontWeight="Bold">Dina bokningar</TextBlock>
+        <components:AutoGrid Margin="0,16,0,0" x:Name="AutoGrid" />
         <components:AutoGrid Margin="0,16,0,0" x:Name="BookingGrid" />
         <TextBlock FontSize="20" FontWeight="Bold" Margin="0,20,0,0">Dina fordon</TextBlock>
         <components:AutoGrid Margin="0,16,0,0" x:Name="VehicleGrid" />
