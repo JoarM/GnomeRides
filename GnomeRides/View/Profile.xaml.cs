@@ -1,4 +1,5 @@
 ﻿using GnomeRides.Classes;
+using GnomeRides.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,18 @@ namespace GnomeRides.View
             TxtBlkName.Text = User.CurrentUser.Name;
             TxtBlkEmail.Text = User.CurrentUser.Email;
             
+        }
+
+        private void btnLogOut_Click(object sender, RoutedEventArgs e)
+        {
+            User.Logout();
+            WindowManager.OpenNewStandaloneWindow(new StartWindow());
+        }
+
+        private void btnDeleteAccount_Click(object sender, RoutedEventArgs e)
+        {
+            User.DeleteUser(tbxPassowrd.Text);
+            WindowManager.OpenNewStandaloneWindow(new StartWindow());
         }
     }
 }
