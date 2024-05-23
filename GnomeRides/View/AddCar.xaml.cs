@@ -39,15 +39,54 @@ namespace GnomeRides.View
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             //Todo add checks
+            uint seats;
+            uint mileage;
+            uint wheels;
+            uint dailyRate;
+            uint co2;
+
+            if (CbxManufacturer.SelectedItem == null)
+            {
+                return;
+            }
+            if (CbxFuelType.SelectedItem == null)
+            {
+                return;
+            }
+
+            uint manufacturer = Constants.VehicleManufacturers.Find(kvp => kvp.Value == CbxManufacturer.SelectedItem.ToString()).Key;
+            uint fuelType = Constants.FuelTypes.Find(kvp => kvp.Value == CbxFuelType.SelectedItem.ToString()).Key;
+
+            if (!uint.TryParse(TbxSeats.Text, out seats))
+            {
+                return;
+            }
+            if (!uint.TryParse(TbxMileage.Text, out mileage))
+            {
+                return;
+            }
+            if (!uint.TryParse(TbxWheels.Text, out wheels))
+            {
+                return;
+            }
+            if (!uint.TryParse(TbxDailyRate.Text, out dailyRate))
+            {
+                return;
+            }
+            if (!uint.TryParse(TbxCo2.Text, out co2))
+            {
+                return;
+            }
+
             string? error = CarController.AddCar(TbxReg.Text,
-            uint.Parse(TbxSeats.Text),
-            Constants.VehicleManufacturers.Find(kvp => kvp.Value == CbxManufacturer.SelectedItem.ToString()).Key,
-            uint.Parse(TbxMileage.Text),
-            uint.Parse(TbxWheels.Text),
+            seats,
+            manufacturer,
+            mileage,
+            wheels,
             TbxModel.Text,
-            Constants.FuelTypes.Find(kvp => kvp.Value == CbxFuelType.SelectedItem.ToString()).Key,
-            uint.Parse(TbxDailyRate.Text) * 100,
-            uint.Parse(TbxCo2.Text)
+            fuelType,
+            dailyRate * 100,
+            co2
             );
             this.NavigationService.Navigate(new Cars());
         }
