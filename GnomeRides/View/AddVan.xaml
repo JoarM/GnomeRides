@@ -64,7 +64,7 @@
             <TextBox Margin="0,4,0,0" Name="TbxInnerHeight" />
             <Label FontWeight="Medium">innre Längd</Label>
             <TextBox Margin="0,4,0,0" Name="TbxInnerLength" />
-            <TextBlock Visibility="Collapsed" x:Name="TxtErrorCC" Margin="0,4,0,0" />
+            <TextBlock x:Name="TxtBlkError" Visibility="Collapsed" Margin="0,8,0,0" Foreground="#D64E30" FontSize="14"></TextBlock>
             <Button Margin="0,12,0,0" HorizontalAlignment="Stretch" Click="Button_Click">Lägg till lastbil</Button>
         </StackPanel>
     </Grid>
