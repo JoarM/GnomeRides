@@ -27,9 +27,9 @@ namespace GnomeRides.View
         public Home()
         {
             InitializeComponent();
-            autoGrid.AddChild(new CarCard(new Car("LGY 677", 5, "Ford", 123, 4, "Fiesta", "Bensin", 10000, "200509227872", 500)));
-            autoGrid.AddChild(new CarCard(new Car("LGY 677", 5, "Ford", 123, 4, "Fiesta", "Bensin", 10000, "200509227872", 500)));
-            autoGrid.AddChild(new CarCard(new Car("LGY 677", 5, "Ford", 123, 4, "Fiesta", "Bensin", 10000, "200509227872", 500)));
+            autoGrid.AddChild(new CarCard(new Car("LGY 677", 5, "Ford", 123, 4, "Fiesta", "Bensin", 10000, "200509227872", null, 500)));
+            autoGrid.AddChild(new CarCard(new Car("LGY 677", 5, "Ford", 123, 4, "Fiesta", "Bensin", 10000, "200509227872", "https://webpage/this/is/a/faulty/link", 500)));
+            autoGrid.AddChild(new CarCard(new Car("LGY 677", 5, "Ford", 123, 4, "Fiesta", "Bensin", 10000, "200509227872", null, 500)));
         }
 
         private void BtnCar_Click(object sender, RoutedEventArgs e)

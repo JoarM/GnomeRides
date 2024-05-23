@@ -40,7 +40,7 @@ namespace GnomeRides.Classes
             string fuel_type,
             uint daily_rate,
             string owner_id,
-            string image_url
+            string? image_url
         )
         {
             _reg_nr = reg_nr;

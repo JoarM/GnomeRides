@@ -42,7 +42,7 @@ namespace GnomeRides.Controlers
                         Constants.FuelTypes.Find(kvp => kvp.Key == reader.GetUInt16(6)).Value,
                         reader.GetUInt32(7),
                         reader.GetString(8),
-                        reader.GetString(9),
+                        (reader.IsDBNull(9) ? null : reader.GetString(9)),
                         reader.GetUInt16(10)
                     );
                     MotorcycleList.Add(motorcycle);
@@ -96,7 +96,7 @@ namespace GnomeRides.Controlers
                     Constants.FuelTypes.Find(kvp => kvp.Key == reader.GetUInt16(6)).Value,
                     reader.GetUInt32(7),
                     reader.GetString(8),
-                    reader.GetString(9),
+                    (reader.IsDBNull(9) ? null : reader.GetString(9)),
                     reader.GetUInt16(10)
                 );
             }
@@ -146,8 +146,12 @@ namespace GnomeRides.Controlers
                 cmd.Parameters.AddWithValue("@cc", cc);
                 cmd.ExecuteNonQuery();
             }
-            catch
+            catch (Exception ex)
             {
+                if ((int)ex.GetType().GetProperty("Number").GetValue(ex, null) == 1062)
+                {
+                    return "Ett fordon med detta regestrerings nummer finns redan utlagt";
+                }
                 return "Ett oväntat fel uppstod";
             }
             return null;

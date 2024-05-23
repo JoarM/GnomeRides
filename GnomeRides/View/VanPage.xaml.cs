@@ -33,7 +33,7 @@ namespace GnomeRides.View
             this.van = van;
             BitmapImage bitmap = new BitmapImage();
             bitmap.BeginInit();
-            bitmap.UriSource = new Uri("https://unifleet.se/wp-content/uploads/2020/10/Volvo-V60-Recharge-Vapour-Grey.png");
+            bitmap.UriSource = new Uri(van.ImageUrl ?? "https://static.vecteezy.com/system/resources/previews/035/715/673/non_2x/head-of-sad-robot-404-not-found-page-png.png");
             bitmap.EndInit();
 
             ImgVan.Source = bitmap;

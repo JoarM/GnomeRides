@@ -229,7 +229,8 @@ namespace GnomeRides.Classes
                     "vehicle.model, " +
                     "vehicle.fuel_type, " +
                     "vehicle.daily_rate, " +
-                    "vehicle.owner_id FROM vehicle " +
+                    "vehicle.owner_id, " +
+                    "vehicle.image_url FROM vehicle " +
                     "WHERE owner_id = @owner_id;";
                 cmd.Parameters.AddWithValue("@owner_id", this._id);
                 using MySqlDataReader reader = cmd.ExecuteReader();
@@ -244,7 +245,8 @@ namespace GnomeRides.Classes
                         reader.GetString(5),
                         Constants.FuelTypes.Find(kvp => kvp.Key == reader.GetUInt16(6)).Value,
                         reader.GetUInt32(7),
-                        reader.GetString(8)
+                        reader.GetString(8),
+                        (reader.IsDBNull(9) ? null : reader.GetString(9))
                     );
                     vehicles.Add(vehicle);
                 }
@@ -270,6 +272,7 @@ namespace GnomeRides.Classes
                     "vehicle.fuel_type, " +
                     "vehicle.daily_rate, " +
                     "vehicle.owner_id, " +
+                    "vehicle.image_url, " +
                     "loan.start_date, " +
                     "loan.end_date, " +
                     "loan.loan_owner_id, " +
@@ -291,7 +294,8 @@ namespace GnomeRides.Classes
                         reader.GetString(5),
                         Constants.FuelTypes.Find(kvp => kvp.Key == reader.GetUInt16(6)).Value,
                         reader.GetUInt32(7),
-                        reader.GetString(8)
+                        reader.GetString(8),
+                        (reader.IsDBNull(9) ? null : reader.GetString(9))
                     );
                     Loan loan = new(
                         DateOnly.FromDateTime(reader.GetDateTime(9)),
