@@ -103,6 +103,11 @@ namespace GnomeRides.Classes
                 return 1;
             }
 
+            if (StartDate < DateOnly.FromDateTime(DateTime.Now))
+            {
+                return 3;
+            }
+
             try
             {
                 using (MySqlCommand cmd = MySqlAdapter.Connection.CreateCommand())
@@ -183,6 +188,7 @@ namespace GnomeRides.Classes
                 null => null,
                 1 => "Vänligen logga in för att hyra en bil.",
                 2 => "Bilen är redan bokad under denna period.",
+                3 => "Kan inte boka datum innan idag",
                 _ => "Ett oväntat fel uppstod",
             };
         }
@@ -231,6 +237,7 @@ namespace GnomeRides.Classes
                 null => null,
                 1 => "Vänligen logga in för att hyra en motorcyckel.",
                 2 => "Motorcycklen är redan bokad under denna period.",
+                3 => "Kan inte boka datum innan idag",
                 _ => "Ett oväntat fel uppstod",
             };
         }
@@ -307,6 +314,7 @@ namespace GnomeRides.Classes
                 null => null,
                 1 => "Vänligen logga in för att hyra en skåpbil.",
                 2 => "Skåpbilen är redan bokad under denna period.",
+                3 => "Kan inte boka datum innan idag",
                 _ => "Ett oväntat fel uppstod",
             };
         }

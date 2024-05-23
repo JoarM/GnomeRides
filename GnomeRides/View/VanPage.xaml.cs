@@ -91,6 +91,15 @@ namespace GnomeRides.View
             {
                 return;
             }
+
+            if (Calendar.SelectedDates.Count == 0)
+            {
+                TxtBlkBookinMessage.Visibility = Visibility.Collapsed;
+                TxtBlkBookinError.Visibility = Visibility.Visible;
+                TxtBlkBookinError.Text = "Välj datum";
+                return;
+            }
+
             string? error = van.LoanVan(DateOnly.FromDateTime(Calendar.SelectedDates.First() > Calendar.SelectedDates.Last() ? Calendar.SelectedDates.Last() : Calendar.SelectedDates.First()), DateOnly.FromDateTime(Calendar.SelectedDates.First() < Calendar.SelectedDates.Last() ? Calendar.SelectedDates.Last() : Calendar.SelectedDates.First()));
             if (error != null)
             {
