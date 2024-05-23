@@ -38,23 +38,133 @@ namespace GnomeRides.View
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             //Todo add checks
+            uint outerHeight;
+            uint outerWidth;
+            uint outerLength;
+            uint innerHeight;
+            uint innerWidth;
+            uint innerLength;
+            uint seats;
+            uint mileage;
+            uint wheels;
+            uint dailyRate;
+            uint maxWeight;
+            uint volume;
+
+            if (!uint.TryParse(TbxSeats.Text, out seats))
+            {
+                TxtBlkError.Visibility = Visibility.Visible;
+                TxtBlkError.Text = "Välj bil säten";
+                return;
+            }
+            if (!uint.TryParse(TbxMileage.Text, out mileage))
+            {
+                TxtBlkError.Visibility = Visibility.Visible;
+                TxtBlkError.Text = "Välj miltal";
+                return;
+            }
+            if (!uint.TryParse(TbxWheels.Text, out wheels))
+            {
+                TxtBlkError.Visibility = Visibility.Visible;
+                TxtBlkError.Text = "Välj hjul antal";
+                return;
+            }
+            if (CbxManufacturer.SelectedItem == null)
+            {
+                TxtBlkError.Visibility = Visibility.Visible;
+                TxtBlkError.Text = "Välj bil tilverkare";
+                return;
+            }
+            if (CbxFuelType.SelectedItem == null)
+            {
+                TxtBlkError.Visibility = Visibility.Visible;
+                TxtBlkError.Text = "Välj drivmedels typ";
+                return;
+            }
+            if (!uint.TryParse(TbxDailyRate.Text, out dailyRate))
+            {
+                TxtBlkError.Visibility = Visibility.Visible;
+                TxtBlkError.Text = "Välj ett positivt tal som pris";
+                return;
+            }
+
+            uint manufacturer = Constants.VehicleManufacturers.Find(kvp => kvp.Value == CbxManufacturer.SelectedItem.ToString()).Key;
+            uint fuelType = Constants.FuelTypes.Find(kvp => kvp.Value == CbxFuelType.SelectedItem.ToString()).Key;
+
+            if (!uint.TryParse(TbxOuterHeight.Text, out outerHeight))
+            {
+                TxtBlkError.Visibility = Visibility.Visible;
+                TxtBlkError.Text = "Välj yttre höjd";
+                return;
+            }
+            if (!uint.TryParse(TbxOuterWidth.Text, out outerWidth))
+            {
+                TxtBlkError.Visibility = Visibility.Visible;
+                TxtBlkError.Text = "Välj yttre bredd";
+                return;
+            }
+            if (!uint.TryParse(TbxOuterLength.Text, out outerLength))
+            {
+                TxtBlkError.Visibility = Visibility.Visible;
+                TxtBlkError.Text = "Välj yttre längd";
+                return;
+            }
+            if (!uint.TryParse(TbxInnerHeight.Text, out innerHeight))
+            {
+                TxtBlkError.Visibility = Visibility.Visible;
+                TxtBlkError.Text = "Välj inre längd ";
+                return;
+            }
+            if (!uint.TryParse(TbxInnerWidth.Text, out innerWidth))
+            {
+                TxtBlkError.Visibility = Visibility.Visible;
+                TxtBlkError.Text = "Välj inre bredd";
+                return;
+            }
+            if (!uint.TryParse(TbxInnerLength.Text, out innerLength))
+            {
+                TxtBlkError.Visibility = Visibility.Visible;
+                TxtBlkError.Text = "Välj inre längd";
+                return;
+            }
+            if (!uint.TryParse(TbxMaxWeight.Text, out maxWeight))
+            {
+                TxtBlkError.Visibility = Visibility.Visible;
+                TxtBlkError.Text = "Välj inre längd";
+                return;
+            }
+            if (!uint.TryParse(TbxInnerLength.Text, out volume))
+            {
+                TxtBlkError.Visibility = Visibility.Visible;
+                TxtBlkError.Text = "Välj inre längd";
+                return;
+            }
+
+
+
             string? error = VanController.AddVan(TbxReg.Text,
-            uint.Parse(TbxSeats.Text),
-            Constants.VehicleManufacturers.Find(kvp => kvp.Value == CbxManufacturer.SelectedItem.ToString()).Key,
-            uint.Parse(TbxMileage.Text),
-            uint.Parse(TbxWheels.Text),
+            seats,
+            manufacturer,
+            mileage,
+            wheels,
             TbxModel.Text,
-            Constants.FuelTypes.Find(kvp => kvp.Value == CbxFuelType.SelectedItem.ToString()).Key,
-            uint.Parse(TbxDailyRate.Text) * 100,
-            uint.Parse(TbxOuterWidth.Text),
-            uint.Parse(TbxOuterHeight.Text),
-            uint.Parse(TbxOuterLength.Text),
-            uint.Parse(TbxInnerWidth.Text),
-            uint.Parse(TbxInnerHeight.Text),
-            uint.Parse(TbxInnerLength.Text),
-            uint.Parse(TbxMaxWeight.Text),
-            uint.Parse(TbxVolume.Text)
+            fuelType,
+            dailyRate * 100,
+            outerWidth,
+            outerHeight,
+            outerLength,
+            innerWidth,
+            innerHeight,
+            innerLength,
+            maxWeight,
+            volume
             );
+            if (error != null)
+            {
+                TxtBlkError.Visibility = Visibility.Visible;
+                TxtBlkError.Text = error;
+                return;
+            }
             this.NavigationService.Navigate(new Vans());
         }
     }
