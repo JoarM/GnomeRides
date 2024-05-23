@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -43,6 +44,12 @@ namespace GnomeRides.View
             uint dailyRate;
             uint cc;
 
+            if (!new Regex("[A-Ö][A-Ö][A-Ö][0-9][0-9][A-Ö0-9]", RegexOptions.IgnoreCase).IsMatch(TbxReg.Text))
+            {
+                TxtBlkError.Visibility = Visibility.Visible;
+                TxtBlkError.Text = "Fyll i ett giltigt regnummer";
+                return;
+            }
             if (!uint.TryParse(TbxSeats.Text, out seats))
             {
                 TxtBlkError.Visibility = Visibility.Visible;
@@ -59,6 +66,12 @@ namespace GnomeRides.View
             {
                 TxtBlkError.Visibility = Visibility.Visible;
                 TxtBlkError.Text = "Välj hjul antal";
+                return;
+            }
+            if (TbxModel.Text == "")
+            {
+                TxtBlkError.Visibility = Visibility.Visible;
+                TxtBlkError.Text = "Fyll i model";
                 return;
             }
             if (CbxManufacturer.SelectedItem == null)

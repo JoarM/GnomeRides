@@ -14,6 +14,7 @@ namespace GnomeRides.Classes
         protected string _fuel_type;
         protected uint _daily_rate;
         protected string _owner_id;
+        protected string? _image_url;
 
         public string RegNr { get { return _reg_nr; } }
         public uint Seats { get { return _seats; } }
@@ -23,6 +24,7 @@ namespace GnomeRides.Classes
         public string Model { get { return _model; } }
         public string FuelType { get { return _fuel_type; } }
         public uint DailyRate { get { return _daily_rate; } }
+        public string? ImageUrl { get { return _image_url; } }
 
         /// <summary>
         /// Absolutley dont use this, just here to stop compiler from crying
@@ -37,7 +39,8 @@ namespace GnomeRides.Classes
             string model,
             string fuel_type,
             uint daily_rate,
-            string owner_id
+            string owner_id,
+            string image_url
         )
         {
             _reg_nr = reg_nr;
@@ -49,6 +52,7 @@ namespace GnomeRides.Classes
             _fuel_type = fuel_type;
             _daily_rate = daily_rate;
             _owner_id = owner_id;
+            _image_url = image_url;
         }
 
         /// <summary>
@@ -158,6 +162,7 @@ namespace GnomeRides.Classes
             string fuel_type,
             uint daily_rate,
             string owner_id,
+            string? image_url,
             uint co2
         )
         {
@@ -170,6 +175,7 @@ namespace GnomeRides.Classes
             _fuel_type = fuel_type;
             _daily_rate = daily_rate;
             _owner_id = owner_id;
+            _image_url = image_url;
             _co2 = co2;
         }
 
@@ -206,7 +212,8 @@ namespace GnomeRides.Classes
             string model,
             string fuel_type,
             uint daily_rate,
-            string owner_id, 
+            string owner_id,
+            string? image_url,
             uint cc
         )
         {
@@ -219,6 +226,7 @@ namespace GnomeRides.Classes
             _fuel_type = fuel_type;
             _daily_rate = daily_rate;
             _owner_id = owner_id;
+            _image_url = image_url;
             _cc = cc;
         }
 
@@ -262,7 +270,8 @@ namespace GnomeRides.Classes
             string model,
             string fuel_type,
             uint daily_rate,
-            string owner_id, 
+            string owner_id,
+            string? image_url,
             uint outer_width, 
             uint outer_height, 
             uint outer_length, 
@@ -282,6 +291,7 @@ namespace GnomeRides.Classes
             _fuel_type = fuel_type;
             _daily_rate = daily_rate;
             _owner_id = owner_id;
+            _image_url = image_url;
             _outer_width = outer_width;
             _outer_height = outer_height;
             _outer_length = outer_length;

@@ -24,6 +24,7 @@ namespace GnomeRides.Controlers
                     "vehicle.fuel_type, " +
                     "vehicle.daily_rate, " +
                     "vehicle.owner_id, " +
+                    "vehicle.image_url, " +
                     "van.outer_width, " +
                     "van.outer_height, " +
                     "van.outer_length, " +
@@ -48,14 +49,15 @@ namespace GnomeRides.Controlers
                         Constants.FuelTypes.Find(kvp => kvp.Key == reader.GetUInt16(6)).Value,
                         reader.GetUInt32(7),
                         reader.GetString(8),
-                        reader.GetUInt32(9),
+                        reader.GetString(9),
                         reader.GetUInt32(10),
                         reader.GetUInt32(11),
                         reader.GetUInt32(12),
                         reader.GetUInt32(13),
                         reader.GetUInt32(14),
                         reader.GetUInt32(15),
-                        reader.GetUInt32(16)
+                        reader.GetUInt32(16),
+                        reader.GetUInt32(17)
                     );
                     VanList.Add(van);
                 }
@@ -86,6 +88,7 @@ namespace GnomeRides.Controlers
                     "vehicle.fuel_type, " +
                     "vehicle.daily_rate, " +
                     "vehicle.owner_id, " +
+                    "vehicle.image_url, " +
                     "van.outer_width, " +
                     "van.outer_height, " +
                     "van.outer_length, " +
@@ -114,14 +117,15 @@ namespace GnomeRides.Controlers
                     Constants.FuelTypes.Find(kvp => kvp.Key == reader.GetUInt16(6)).Value,
                     reader.GetUInt32(7),
                     reader.GetString(8),
-                    reader.GetUInt32(9),
+                    reader.GetString(9),
                     reader.GetUInt32(10),
                     reader.GetUInt32(11),
                     reader.GetUInt32(12),
                     reader.GetUInt32(13),
                     reader.GetUInt32(14),
                     reader.GetUInt32(15),
-                    reader.GetUInt32(16)
+                    reader.GetUInt32(16),
+                    reader.GetUInt32(17)
                 );
             }
             catch
@@ -162,8 +166,8 @@ namespace GnomeRides.Controlers
             try
             {
                 using MySqlCommand cmd = MySqlAdapter.Connection.CreateCommand();
-                cmd.CommandText = "INSERT INTO vehicle (reg_nr, seats, manufacturer, mileage, wheels, model, fuel_type, daily_rate, owner_id) " +
-                    "VALUES (@reg_nr, @seats, @manufacturer, @mileage, @wheels, @model, @fuel_type, @daily_rate, @owner_id);" +
+                cmd.CommandText = "INSERT INTO vehicle (reg_nr, seats, manufacturer, mileage, wheels, model, fuel_type, daily_rate, owner_id, image_url) " +
+                    "VALUES (@reg_nr, @seats, @manufacturer, @mileage, @wheels, @model, @fuel_type, @daily_rate, @owner_id, @image_url);" +
                     "INSERT INTO van (reg_nr, outer_width, outer_height, outer_length, inner_width, inner_height, inner_length, max_weight, volume) " +
                     "VALUES (@reg_nr, @outer_width, @outer_height, @outer_length, @inner_width, @inner_height, @inner_length, @max_weight, @volume);";
                 cmd.Parameters.AddWithValue("@reg_nr", regNr);
@@ -175,6 +179,7 @@ namespace GnomeRides.Controlers
                 cmd.Parameters.AddWithValue("@fuel_type", fuelType);
                 cmd.Parameters.AddWithValue("@daily_rate", dailyRate);
                 cmd.Parameters.AddWithValue("@owner_id", User.CurrentUser.Id);
+                cmd.Parameters.AddWithValue("@image_url", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRc_n-QNfP_nRTTOglyuOfiU5wNv7dU43xvV7XgQIWd1w&s");
                 cmd.Parameters.AddWithValue("@outer_width", outerWidth);
                 cmd.Parameters.AddWithValue("@outer_height", outerHeight);
                 cmd.Parameters.AddWithValue("@outer_length", outerLength);

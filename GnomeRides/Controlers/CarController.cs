@@ -25,6 +25,7 @@ namespace GnomeRides.Controlers
                     "vehicle.fuel_type, " +
                     "vehicle.daily_rate," +
                     " vehicle.owner_id, " +
+                    "vehicle.image_url, " +
                     "car.co2 " +
                     "FROM vehicle " +
                     "INNER JOIN car " +
@@ -42,7 +43,8 @@ namespace GnomeRides.Controlers
                         Constants.FuelTypes.Find(kvp => kvp.Key == reader.GetUInt16(6)).Value, 
                         reader.GetUInt32(7),
                         reader.GetString(8),
-                        reader.GetUInt16(9)
+                        reader.GetString(9),
+                        reader.GetUInt16(10)
                     );
                     CarList.Add(car);
                 }
@@ -72,6 +74,7 @@ namespace GnomeRides.Controlers
                     "vehicle.fuel_type, " +
                     "vehicle.daily_rate," +
                     " vehicle.owner_id, " +
+                    "vehicle.image_url, " +
                     "car.co2 " +
                     "FROM vehicle " +
                     "INNER JOIN car " +
@@ -93,7 +96,8 @@ namespace GnomeRides.Controlers
                     Constants.FuelTypes.Find(kvp => kvp.Key == reader.GetUInt16(6)).Value,
                     reader.GetUInt32(7),
                     reader.GetString(8),
-                    reader.GetUInt16(9)
+                    reader.GetString(9),
+                    reader.GetUInt16(10)
                 );
             }
             catch
@@ -126,8 +130,8 @@ namespace GnomeRides.Controlers
             try
             {
                 using MySqlCommand cmd = MySqlAdapter.Connection.CreateCommand();
-                cmd.CommandText = "INSERT INTO vehicle (reg_nr, seats, manufacturer, mileage, wheels, model, fuel_type, daily_rate, owner_id) " +
-                    "VALUES (@reg_nr, @seats, @manufacturer, @mileage, @wheels, @model, @fuel_type, @daily_rate, @owner_id);" +
+                cmd.CommandText = "INSERT INTO vehicle (reg_nr, seats, manufacturer, mileage, wheels, model, fuel_type, daily_rate, owner_id, image_url) " +
+                    "VALUES (@reg_nr, @seats, @manufacturer, @mileage, @wheels, @model, @fuel_type, @daily_rate, @owner_id, @image_url);" +
                     "INSERT INTO car (reg_nr, co2) VALUES (@reg_nr, @co2);";
                 cmd.Parameters.AddWithValue("@reg_nr", regNr);
                 cmd.Parameters.AddWithValue("@seats", seats);
@@ -138,6 +142,7 @@ namespace GnomeRides.Controlers
                 cmd.Parameters.AddWithValue("@fuel_type", fuelType);
                 cmd.Parameters.AddWithValue("@daily_rate", dailyRate);
                 cmd.Parameters.AddWithValue("@owner_id", User.CurrentUser.Id);
+                cmd.Parameters.AddWithValue("@image_url", "https://unifleet.se/wp-content/uploads/2020/10/Volvo-V60-Recharge-Vapour-Grey.png");
                 cmd.Parameters.AddWithValue("@co2", co2);
                 cmd.ExecuteNonQuery();
             } catch

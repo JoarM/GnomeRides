@@ -1,0 +1,1 @@
+﻿ALTER TABLE `vehicle` ADD `image_url` varchar(255);

@@ -28,7 +28,7 @@ namespace GnomeRides.Components
             InitializeComponent();
             BitmapImage bitmap = new BitmapImage();
             bitmap.BeginInit();
-            bitmap.UriSource = new Uri("https://images5.1000ps.net/images_bikekat/2024/7-BMW/9949-F_900_XR/013-638239841766558822-bmw-f-900-xr.jpg?width=520&height=380&mode=crop");
+            bitmap.UriSource = new Uri(motorcycle.ImageUrl ?? "https://static.vecteezy.com/system/resources/previews/035/715/673/non_2x/head-of-sad-robot-404-not-found-page-png.png");
             bitmap.EndInit();
 
             this.motorcycle = motorcycle;

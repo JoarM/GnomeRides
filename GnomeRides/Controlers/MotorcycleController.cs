@@ -24,6 +24,7 @@ namespace GnomeRides.Controlers
                     "vehicle.fuel_type, " +
                     "vehicle.daily_rate, " +
                     "vehicle.owner_id, " +
+                    "vehicle.image_url, " +
                     "motorcycle.cc " +
                     "FROM vehicle " +
                     "INNER JOIN motorcycle " +
@@ -41,7 +42,8 @@ namespace GnomeRides.Controlers
                         Constants.FuelTypes.Find(kvp => kvp.Key == reader.GetUInt16(6)).Value,
                         reader.GetUInt32(7),
                         reader.GetString(8),
-                        reader.GetUInt16(9)
+                        reader.GetString(9),
+                        reader.GetUInt16(10)
                     );
                     MotorcycleList.Add(motorcycle);
                 }
@@ -72,6 +74,7 @@ namespace GnomeRides.Controlers
                     "vehicle.fuel_type, " +
                     "vehicle.daily_rate, " +
                     "vehicle.owner_id, " +
+                    "vehicle.image_url, " +
                     "motorcycle.cc " +
                     "FROM vehicle " +
                     "INNER JOIN motorcycle " +
@@ -93,10 +96,11 @@ namespace GnomeRides.Controlers
                     Constants.FuelTypes.Find(kvp => kvp.Key == reader.GetUInt16(6)).Value,
                     reader.GetUInt32(7),
                     reader.GetString(8),
-                    reader.GetUInt16(9)
+                    reader.GetString(9),
+                    reader.GetUInt16(10)
                 );
             }
-            catch (Exception ex)
+            catch
             {
                 return (motorcycle, "Ett oväntat fel uppstod");
             }
@@ -126,8 +130,8 @@ namespace GnomeRides.Controlers
             try
             {
                 using MySqlCommand cmd = MySqlAdapter.Connection.CreateCommand();
-                cmd.CommandText = "INSERT INTO vehicle (reg_nr, seats, manufacturer, mileage, wheels, model, fuel_type, daily_rate, owner_id) " +
-                    "VALUES (@reg_nr, @seats, @manufacturer, @mileage, @wheels, @model, @fuel_type, @daily_rate, @owner_id);" +
+                cmd.CommandText = "INSERT INTO vehicle (reg_nr, seats, manufacturer, mileage, wheels, model, fuel_type, daily_rate, owner_id, image_url) " +
+                    "VALUES (@reg_nr, @seats, @manufacturer, @mileage, @wheels, @model, @fuel_type, @daily_rate, @owner_id, @image_url);" +
                     "INSERT INTO motorcycle (reg_nr, cc) VALUES (@reg_nr, @cc);";
                 cmd.Parameters.AddWithValue("@reg_nr", regNr);
                 cmd.Parameters.AddWithValue("@seats", seats);
@@ -138,6 +142,7 @@ namespace GnomeRides.Controlers
                 cmd.Parameters.AddWithValue("@fuel_type", fuelType);
                 cmd.Parameters.AddWithValue("@daily_rate", dailyRate);
                 cmd.Parameters.AddWithValue("@owner_id", User.CurrentUser.Id);
+                cmd.Parameters.AddWithValue("@image_url", "https://images5.1000ps.net/images_bikekat/2024/7-BMW/9949-F_900_XR/013-638239841766558822-bmw-f-900-xr.jpg?width=520&height=380&mode=crop");
                 cmd.Parameters.AddWithValue("@cc", cc);
                 cmd.ExecuteNonQuery();
             }
