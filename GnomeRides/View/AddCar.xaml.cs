@@ -44,38 +44,51 @@ namespace GnomeRides.View
             uint dailyRate;
             uint co2;
 
+            if (!uint.TryParse(TbxSeats.Text, out seats))
+            {
+                TxtBlkError.Visibility = Visibility.Visible;
+                TxtBlkError.Text = "Välj bil säten";
+                return;
+            }
+            if (!uint.TryParse(TbxMileage.Text, out mileage))
+            {
+                TxtBlkError.Visibility = Visibility.Visible;
+                TxtBlkError.Text = "Välj miltal";
+                return;
+            }
+            if (!uint.TryParse(TbxWheels.Text, out wheels))
+            {
+                TxtBlkError.Visibility = Visibility.Visible;
+                TxtBlkError.Text = "Välj hjul antal";
+                return;
+            }
             if (CbxManufacturer.SelectedItem == null)
             {
+                TxtBlkError.Visibility = Visibility.Visible;
+                TxtBlkError.Text = "Välj bil tilverkare";
                 return;
             }
             if (CbxFuelType.SelectedItem == null)
             {
+                TxtBlkError.Visibility = Visibility.Visible;
+                TxtBlkError.Text = "Välj drivmedels typ";
+                return;
+            }
+            if (!uint.TryParse(TbxDailyRate.Text, out dailyRate))
+            {
+                TxtBlkError.Visibility = Visibility.Visible;
+                TxtBlkError.Text = "Välj ett positivt tal som pris";
+                return;
+            }
+            if (!uint.TryParse(TbxCo2.Text, out co2))
+            {
+                TxtBlkError.Visibility = Visibility.Visible;
+                TxtBlkError.Text = "Fyll i koldioxid uttsläps mängd";
                 return;
             }
 
             uint manufacturer = Constants.VehicleManufacturers.Find(kvp => kvp.Value == CbxManufacturer.SelectedItem.ToString()).Key;
             uint fuelType = Constants.FuelTypes.Find(kvp => kvp.Value == CbxFuelType.SelectedItem.ToString()).Key;
-
-            if (!uint.TryParse(TbxSeats.Text, out seats))
-            {
-                return;
-            }
-            if (!uint.TryParse(TbxMileage.Text, out mileage))
-            {
-                return;
-            }
-            if (!uint.TryParse(TbxWheels.Text, out wheels))
-            {
-                return;
-            }
-            if (!uint.TryParse(TbxDailyRate.Text, out dailyRate))
-            {
-                return;
-            }
-            if (!uint.TryParse(TbxCo2.Text, out co2))
-            {
-                return;
-            }
 
             string? error = CarController.AddCar(TbxReg.Text,
             seats,
@@ -87,6 +100,12 @@ namespace GnomeRides.View
             dailyRate * 100,
             co2
             );
+            if (error != null)
+            {
+                TxtBlkError.Visibility = Visibility.Visible; 
+                TxtBlkError.Text = error;
+                return;
+            }
             this.NavigationService.Navigate(new Cars());
         }
     }

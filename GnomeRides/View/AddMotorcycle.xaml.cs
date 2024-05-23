@@ -37,17 +37,74 @@ namespace GnomeRides.View
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //Todo add checks
+            uint seats;
+            uint mileage;
+            uint wheels;
+            uint dailyRate;
+            uint cc;
+
+            if (!uint.TryParse(TbxSeats.Text, out seats))
+            {
+                TxtBlkError.Visibility = Visibility.Visible;
+                TxtBlkError.Text = "Välj bil säten";
+                return;
+            }
+            if (!uint.TryParse(TbxMileage.Text, out mileage))
+            {
+                TxtBlkError.Visibility = Visibility.Visible;
+                TxtBlkError.Text = "Välj miltal";
+                return;
+            }
+            if (!uint.TryParse(TbxWheels.Text, out wheels))
+            {
+                TxtBlkError.Visibility = Visibility.Visible;
+                TxtBlkError.Text = "Välj hjul antal";
+                return;
+            }
+            if (CbxManufacturer.SelectedItem == null)
+            {
+                TxtBlkError.Visibility = Visibility.Visible;
+                TxtBlkError.Text = "Välj bil tilverkare";
+                return;
+            }
+            if (CbxFuelType.SelectedItem == null)
+            {
+                TxtBlkError.Visibility = Visibility.Visible;
+                TxtBlkError.Text = "Välj drivmedels typ";
+                return;
+            }
+            if (!uint.TryParse(TbxDailyRate.Text, out dailyRate))
+            {
+                TxtBlkError.Visibility = Visibility.Visible;
+                TxtBlkError.Text = "Välj ett positivt tal som pris";
+                return;
+            }
+            if (!uint.TryParse(TbxCC.Text, out cc))
+            {
+                TxtBlkError.Visibility = Visibility.Visible;
+                TxtBlkError.Text = "Fyll i koldioxid uttsläps mängd";
+                return;
+            }
+
+            uint manufacturer = Constants.VehicleManufacturers.Find(kvp => kvp.Value == CbxManufacturer.SelectedItem.ToString()).Key;
+            uint fuelType = Constants.FuelTypes.Find(kvp => kvp.Value == CbxFuelType.SelectedItem.ToString()).Key;
+
             string? error = MotorcycleController.AddMotorcycle(TbxReg.Text,
-            uint.Parse(TbxSeats.Text),
-            Constants.VehicleManufacturers.Find(kvp => kvp.Value == CbxManufacturer.SelectedItem.ToString()).Key,
-            uint.Parse(TbxMileage.Text),
-            uint.Parse(TbxWheels.Text),
+            seats,
+            manufacturer,
+            mileage,
+            wheels,
             TbxModel.Text,
-            Constants.FuelTypes.Find(kvp => kvp.Value == CbxFuelType.SelectedItem.ToString()).Key,
-            uint.Parse(TbxDailyRate.Text) * 100,
-            uint.Parse(TbxCC.Text)
+            fuelType,
+            dailyRate * 100,
+            cc
             );
+            if (error != null)
+            {
+                TxtBlkError.Visibility = Visibility.Visible;
+                TxtBlkError.Text = error;
+                return;
+            }
             this.NavigationService.Navigate(new Motorcycles());
         }
     }

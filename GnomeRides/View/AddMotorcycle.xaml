@@ -52,6 +52,7 @@
             <TextBox Margin="0,4,0,0" Name="TbxCC" />
             <TextBlock Visibility="Collapsed" x:Name="TxtErrorCC" Margin="0,4,0,0" />
             <Button Margin="0,12,0,0" HorizontalAlignment="Stretch" Click="Button_Click">Lägg till Motorcykel</Button>
+            <TextBlock x:Name="TxtBlkError" Visibility="Collapsed" Margin="0,8,0,0" Foreground="#D64E30" FontSize="14"></TextBlock>
         </StackPanel>
     </Grid>
 </Page>
