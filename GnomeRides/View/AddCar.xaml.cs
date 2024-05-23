@@ -38,7 +38,6 @@ namespace GnomeRides.View
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //Todo add checks
             uint seats;
             uint mileage;
             uint wheels;
