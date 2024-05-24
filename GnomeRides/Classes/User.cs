@@ -204,7 +204,7 @@ namespace GnomeRides.Classes
 
                 using (MySqlCommand cmd = MySqlAdapter.Connection.CreateCommand())
                 {
-                    cmd.CommandText = "DELETE user WHERE id = @id;";
+                    cmd.CommandText = "DELETE FROM user WHERE id = @id;";
                     cmd.Parameters.AddWithValue("@id", _currentUser._id);
                     cmd.ExecuteNonQuery();
                 }
@@ -298,11 +298,11 @@ namespace GnomeRides.Classes
                         (reader.IsDBNull(9) ? null : reader.GetString(9))
                     );
                     Loan loan = new(
-                        DateOnly.FromDateTime(reader.GetDateTime(9)),
                         DateOnly.FromDateTime(reader.GetDateTime(10)),
-                        reader.GetString(11),
+                        DateOnly.FromDateTime(reader.GetDateTime(11)),
+                        reader.GetString(12),
                         reader.GetString(0),
-                        reader.GetInt32(12)
+                        reader.GetInt32(13)
                     );
                     vehicles.Add((vehicle, loan));
                 }
